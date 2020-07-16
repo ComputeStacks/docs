@@ -15,7 +15,7 @@ ComputeStacks is a commercial container orchestration and hosting platform for s
 
 ## Frequently Asked Questions
 
-* Requirements for an [OnPrem Demo](admin_guide/onprem-demo.md).
+* Requirements for an [OnPrem Demo](admin_guide/getting_started/onprem-demo.md).
 * Understanding our [Billing System](admin_guide/billing/index.md) and [WHMCS](admin_guide/integrations/whmcs_plugin.md) integration.
 * See how we integrate with [cPanel](admin_guide/integrations/cpanel_plugin.md).
 
