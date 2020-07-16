@@ -135,7 +135,7 @@ In order to connect to redis over TLS on cPanel, you will need to be running at 
 
     [ ![WHM PHP Redis](/images/content/cpanel/cpanel-php-redis.png){: style="border: 1px solid #ccc;padding:5px;width:46%;" } ](/images/content/cpanel/cpanel-php-redis.png){: target="_blank" }
 
-[Click to learn more](/user_guide/container_images/redis) about our redis implementation on ComputeStacks.
+[Click to learn more](../../user_guide/container_images/redis.md) about our redis implementation on ComputeStacks.
 
 ## FAQ & Troubleshooting
 

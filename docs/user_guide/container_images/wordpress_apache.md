@@ -6,6 +6,8 @@ description: Migrate from Wordpress Apache to LiteSpeed
 
 Our [default Wordpress installation](wordpress.md) now uses the [Open LiteSpeed](https://openlitespeed.org){: target="_blank" }. This guide will aid in your transition to our new image.
 
+Due to changes in the volume structure between the images, a normal upgrade is not possible. Instead, this guide will walk you through migrating your data from your old container, to your new litespeed-based wordpress container.
+
 ## Overview
 
 Before migrating to the new image, be sure to understand a few important changes:

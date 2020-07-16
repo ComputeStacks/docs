@@ -6,7 +6,7 @@ description: Cloudflare With ComputeStacks
 ComputeStacks offers a number of integration points to enable seamless integration with Cloudflare.
 
 ## Real IP
-We automatically accept the real visitor IP header from cloudflare and pass that along to your application as our standard real ip header. (see tip about real IP [here](/user_guide/building-images/#recommended-best-practices)).
+We automatically accept the real visitor IP header from cloudflare and pass that along to your application as our standard real ip header. (see tip about real IP [here](../how-to/building-images.md#recommended-best-practices)).
 
 ## CloudFlare Access & Restricting Traffic
 You can block all external traffic to your site, and only allow traffic originating from Cloudflare. This offers a number advantages for Cloudflare enabled sites:

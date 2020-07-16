@@ -36,13 +36,13 @@ Once your registry is created, make note of the *registry url* and the *username
 On your local instance of docker, open a command prompt and enter `docker login <registry-url>`.
 
 ### Make use of our Metadata service
-When building multi-container services, you can leverage our [Metadata service](`/user_guide/developer-tools/#metadata-service`) to automate the configuration step of your application. For example, in our Elasticsearch image, we bundle a nginx container to provide an auth layer in front of ElasticSearch. We use the metadata service to discover the ElasticSearch instances and reconfigure the nginx load balancer automatically.
+When building multi-container services, you can leverage our [Metadata service](../developer-tools.md#metadata-service) to automate the configuration step of your application. For example, in our Elasticsearch image, we bundle a nginx container to provide an auth layer in front of ElasticSearch. We use the metadata service to discover the ElasticSearch instances and reconfigure the nginx load balancer automatically.
 
 ### External Resources
 
 Here are some great external resources to review:
 
-* [ComputeStacks docker image library](https://git.cmptstks.com/integrations/docker-images){: target="_blank" }
+* [ComputeStacks docker image library](https://github.com/ComputeStacks/docker){: target="_blank" }
 * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: target="_blank" }
 * [Bitnami docker images](https://bitnami.com/stacks/containers){: target="_blank" }
 
@@ -71,7 +71,7 @@ Here are some great external resources to review:
 ??? info "Don't hardcode configuration"
     Do not hard code any database credentials, or other configuration that requires up front knowledge of the environment. Instead, make all the options configurable as `ENV` variables that are accessible to an `entrypoint` script that can configure your application at run time. 
 
-    See our [Wordpress image](https://git.cmptstks.com/integrations/docker-images/-/blob/master/wordpress/php7.3-litespeed/10-wordpress.sh){: target="_blank" } as an example.
+    See our [Wordpress image](https://github.com/ComputeStacks/docker/blob/master/wordpress/php7.3-litespeed/10-wordpress.sh){: target="_blank" } as an example.
 
     Our `entrypoint` script takes the database settings from the environment, and configures the wordpress database settings.
 
@@ -159,11 +159,11 @@ This tells ComputeStacks how to route traffic to your container.
 
 * **Enable External Access**: Setting this to true will enable external access from the load balancer.
 * **TCP Proxy Options**: In general, this should always be disabled, otherwise you could break communication with your app. If your application specifically supports the `send-proxy` option, you can configure it here. ([learn more](https://cbonte.github.io/haproxy-dconv/1.8/configuration.html#5.2-send-proxy){: target="_blank" })
-* **Cloudflare**: _This is only available when editing the ingress rule on a running service._ This allows you to restrict access to your service to only Cloudflare. ([learn more](/user_guide/cloudflare))
+* **Cloudflare**: _This is only available when editing the ingress rule on a running service._ This allows you to restrict access to your service to only Cloudflare. ([learn more](../third-party/cloudflare))
 
 #### Persistent Storage (Volumes)
 
-Any data changed or created by your container can be lost at any time, so it's important create volumes to persist your data. In addition to defining your volumes, you may also configure our integrated backup tool. ([learn more](/user_guide/backups))
+Any data changed or created by your container can be lost at any time, so it's important create volumes to persist your data. In addition to defining your volumes, you may also configure our integrated backup tool. ([learn more](../backups.md))
 
 We recommend only 1 volume per container, however we recognize that sometimes that is not feasible. We, for example, use 2 volumes in our [OpenLiteSpeed based images](https://github.com/ComputeStacks/docker/master/tree/php/open-litespeed){: target="_blank" }.
 
