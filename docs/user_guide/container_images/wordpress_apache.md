@@ -31,10 +31,10 @@ The migration process is fairly simple, and involves creating a new wordpress & 
 
 ### Migrate Database 
 
-    !!! tip ""
-        This is current as of v5.2. In a future CS update, you will be able to do an in-place container upgrade of the database
+!!! tip ""
+    This is current as of v5.2. In a future CS update, you will be able to do an in-place container upgrade of the database
 
-    Dump & Import Existing database
+Perform a mysql dump on your existing database, and migrate it to the new database container.
 
 ### Migrate wordpress data
 
