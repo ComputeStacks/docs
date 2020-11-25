@@ -25,10 +25,10 @@ The ComputeStacks integration for WHMCS provides an easy onboarding experience f
 
 ## Installation
 
-!!! danger ""
-    Our plugin requires WHMCS v7.8 or greater.
-
 [Download Our Plugin](https://github.com/ComputeStacks/billing-whmcs/archive/master.zip) and upload the contents to your WHMCS server. The folder structure included should match your local installation. Ultimately, the `computestacks` directory under `whmcs/modules/servers/`, should be placed on your WHMCS server at `modules/servers/`.
+
+!!! abstract ""
+    The current version requires WHMCS v8+. For WHMCS v7 support, please use our [latest v2 version](https://github.com/ComputeStacks/billing-whmcs/releases){: target="_blank" }.
 
 ## Configure WHMCS
 
