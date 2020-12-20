@@ -32,7 +32,7 @@ _Container Nodes_ are the physical compute resources that will run the container
 
 #### Cluster Network
 
-For [single node](#starter-environment) configurations, you only need a single public IP per server. 
+For [single node](#starter-environment) configurations, you only need a single public IP per server. However, in general we recommend a private network if possible.
 
 For clustered environments, we recommend you create a dedicated private network for inter-node communication. This should not perform any kind of source/destination filtering, otherwise we will need to use an overlay network, which will reduce overall network performance.
 
@@ -78,11 +78,11 @@ ComputeStacks offers an optional DNS interface. You may choose to use our hosted
 For small hosting providers who are just getting started. This setup will typically support 20 Wordpress sites with average traffic.
 
 !!! abstract "Single Region, No Cluster"
-    Server Role    | CPU     | Memory | Storage | Network Notes
-    ---------------|---------|--------|---------|----------------------------------------------------------------------------------
+    Server Role    | CPU     | Memory | Storage  | Network Notes
+    ---------------|---------|--------|----------|----------------------------------------------------------------------------------
     Controller     | 4 Cores | 8 GB    | 50 GB   | Single public IP address
     Container Node | 4 Cores | 12 GB   | 100 GB  | Single public IP Address
-    Backup Server  | 1 Core  | 1 GB   | 100 GB  | Single public IP, or private ip as long as it's accessible to the container node.
+    Backup Server  | 1 Core  | 1 GB   | 100 GB   | 1 public, 1 private
 
 ### Cluster Examples
 
@@ -94,6 +94,9 @@ All of our cluster examples will require:
 
 #### Small Cluster
 
+!!! question ""
+    Container Registry, Prometheus & loki run on the controller
+
 !!! abstract "Single Region"
     Server Role      | CPU     | Memory | Storage | Network Notes
     -----------------|---------|--------|---------|----------------------------------------------------------------------------------
@@ -101,7 +104,7 @@ All of our cluster examples will require:
     Container Node 1 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
     Container Node 2 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
     Container Node 3 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
-    Backup Server    | 1 Core  | 1 GB   | 150 GB  | Single public IP, or private ip as long as it's accessible to the container node.
+    Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
 
 #### Medium Cluster
 
@@ -112,8 +115,9 @@ All of our cluster examples will require:
     Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server      | 1 Core  | 1 GB   | 150 GB  | Single public IP, or private ip as long as it's accessible to the container node.
-    Container Registry | 2 Cores | 2 GB   | 150 GB  | Single public IP
+    Backup Server      | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
+    Container Registry | 2 Cores | 2 GB   | 150 GB  | 1 public, 1 private
+    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 #### Multi-Region Cluster
 
@@ -129,7 +133,8 @@ All of our cluster examples will require:
     Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server      | 1 Core  | 1 GB   | 150 GB  | Single public IP, or private ip as long as it's accessible to the container node.
+    Backup Server      | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
+    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 !!! example "Region 2"
     Server Role        | CPU     | Memory | Storage | Network Notes
@@ -137,7 +142,8 @@ All of our cluster examples will require:
     Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server      | 1 Core  | 1 GB   | 150 GB  | Single public IP, or private ip as long as it's accessible to the container node.
+    Backup Server      | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
+    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 ### Single Region, Multi-AZ
 
@@ -151,7 +157,8 @@ All of our cluster examples will require:
     -------------------|---------|--------|---------|----------------------------------------------------------------------------------
     Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
-    Backup Server      | 1 Core  | 1 GB   | 350 GB  | Single public IP, or private ip as long as it's accessible to the container node.
+    Backup Server      | 1 Core  | 1 GB   | 350 GB  | 1 public, 1 private (private is accessible to both AZ's)
+    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 !!! example "Region 1, AZ 1"
     Server Role        | CPU     | Memory | Storage | Network Notes
