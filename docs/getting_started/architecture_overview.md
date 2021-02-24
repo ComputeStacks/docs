@@ -71,7 +71,7 @@ ComputeStacks offers an optional DNS interface. You may choose to use our hosted
 
     The recommendations below are based on a typical hosting provider's workload. This means that a majority of the containers deployed will be php-based _(e.g. wordpress)_, and use Redis & MySQL.
 
-    _Please see our [onprem-demo guide](onprem-demo.md) for our minimum requirements._
+    _Please see our [installation guide](installation/0_requirements.md#minimum-server-requirements) for our minimum requirements._
 
 
 ### Single-Node Environment

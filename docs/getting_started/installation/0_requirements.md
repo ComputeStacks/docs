@@ -119,7 +119,7 @@ If you have the option to select the partition layout for the container nodes, p
 All CPU Cores should be newer x86 2Ghz+ Intel or AMD processors.
 
 !!! tip ""
-    See more example configurations [here](../getting_started/architecture_overview.md#example-configurations).
+    See more example configurations [here](../architecture_overview.md#example-configurations).
 
 !!! abstract "Testing Environment"
 

@@ -30,7 +30,7 @@ We currently have 3 options for integrating billing with ComputeStacks:
 
 ## LoadBalancer Wildcard SSL Certificate
 
-During the installation process, a self-signed wildcard certificate was installed to the new Load Balancer. To install a valid certificate, please refer to our [LoadBalancer SSL Guide](../cluster_management/load_balancer.md#ssl-settings).
+During the installation process, a self-signed wildcard certificate was installed to the new Load Balancer. To install a valid certificate, please refer to our [LoadBalancer SSL Guide](../../admin_guide/cluster_management/load_balancer.md#ssl-settings).
 
 ### SMTP Settings
 
