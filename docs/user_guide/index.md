@@ -22,6 +22,6 @@ Welcome to the end-user guide for ComputeStacks!
     Please see our [how to send mail](core-concepts/mail.md) guide.
 
 ## Getting Help
-If you're a customer of ComputeStacks, you may contact us through our [normal support](../admin_guide/index.md#getting-help) channel. 
+If you're a customer of ComputeStacks, you may contact us through our [normal support](https://www.computestacks.com/contact){: target="_blank"} channels. 
 
 If you're a customer of one of our providers, please contact your hosting provider through their normal support system.

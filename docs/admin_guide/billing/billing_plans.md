@@ -8,7 +8,9 @@ ComputeStacks uses billing plans as a rule set for determining the real time pri
 You can create as many billing plans as you want, but only one may the default. This is useful for creating custom or special pricing for a different set of users.
 
 !!! danger ""
-    If no price rule exists for a given scenario _(e.g. currency + region + quantity)_, ComputeStacks will default to a price of zero.
+    If no price rule exists for a given scenario _(e.g. currency + region + quantity)_, ComputeStacks will default to a price of 0.00.
+
+[ ![Billing Plan Overview](/images/content/billing/billing-plan-overview.png){: style="border: 1px solid #ccc;padding:5px;width:100%;" } ](/images/content/billing/billing-plan-overview.png){: target="_blank" }
 
 ## Products & Packages
 
@@ -18,49 +20,52 @@ A product is a separate object from Billing Plans, which allow you to define it 
 
 Products are the base for packages, so you must define this first prior to creating a package.
 
-#### External ID
-This is available in [WebHooks](../integrations/webhooks.md) and API Calls. This is generally used by billing integrations to identify this product.
+* **External ID**
 
-#### Kind
-Package or Metered Resource
+    This is available in [WebHooks](../../getting_started/integrations/webhooks.md) and API Calls. This is generally used by billing integrations to identify this product.
 
-* **Package:** Container package
-* **Metered Resource:** Bandwidth, Storage.
+* **Package or Metered Resource**:
+    * **Package:** Container package
+    * **Metered Resource:** Bandwidth, Storage.
+* **Resource**
 
-#### Resource
-Only applies of 'Kind' is 'Metered Resource'
+    Only applies of 'Kind' is 'Metered Resource'
+    This tells ComputeStacks what kind of resource this is. When we're calculating pricing on the hour, we will use this value to find the price for a given resource.
+* **Unit**
 
-This tells ComputeStacks what kind of resource this is. When we're calculating pricing on the hour, we will use this value to find the price for a given resource.
+    This should almost always be 1.
 
-#### Unit
-This should almost always be 1.
+* **Unit Type**
 
-#### Unit Type
-`CORE` for `CPU`, `MB` for Memory, and `GB` for bandwidth and storage.
+    `CORE` for `CPU`, `MB` for Memory, and `GB` for bandwidth and storage.
 
-#### Aggregated Usage
-_Currently only used for Bandwidth._
+### Package Settings
 
-When checked, we will compare the result from the last usage period and subtract that from the current reading.
+After creating a product, and selecting _Package_ as the product kind, you will have the ability to customize the package resource.
 
-### Creating a Package
+* **CPU**
+    
+    How many CPU Cores to assign. These can be fractional units of `0.25`.
 
-Once you've created your product with type _Package_, you will see an option to create a package on the product list.
+* **Memory**
+    
+    Memory is stored in `MB`.
 
-#### CPU
-How many CPU Cores to assign. These can be fractional units of `0.25`.
+* **Volume Storage**
+    
+    Anything over this amount will be charged at the current storage rate set in the users billing plan.
 
-#### Memory
-Memory is stored in `MB`.
+* **Temporary Disk**
 
-#### Included Storage
-Anything over this amount will be charged at the current storage rate set in the users billing plan.
+    Temporary disk is all storage used by the container, less any volume usage. Anything over this amount will be charged at the current temporary disk rate set in the users billing plan.
 
-#### Included Bandwidth
-Up to this amount is included, anything else will be charged as overage.
+* **Bandwidth**
+    
+    Up to this amount is included, anything else will be charged as overage.
 
-#### Included Backup Storage
-Anything beyond this will be charged as overage.
+* **Backup Storage**
+
+    Anything beyond this will be charged as overage.
 
 ## Billing Phases
 

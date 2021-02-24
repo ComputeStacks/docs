@@ -26,7 +26,7 @@ Navigate to your site's URL and follow the steps they list.
 Config Option     | Value
 ------------------|------------------------------------------------------------------------------------------------------------------
 Database Host     | This will be the private IP Address of the database container that would have been added during the initial order
-Database Name     | This will be the value listed under `Whmcs dbname` in ComputeStacks
+Database Name     | This will be the name of the WHMCS service without the dash. For example, if your WHMCS service was `friendly-newton3`, the dbname would be `friendlynewton3`.
 Database Port     | `3306`
 Database Username | `root`
 Database Password | This will be visible under the database service in ComputeStacks.

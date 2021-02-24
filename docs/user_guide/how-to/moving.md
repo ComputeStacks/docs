@@ -138,5 +138,5 @@ We will be creating the following environmental parameters for our service:
 
 After you have added all the environmental parameters, you will need to issue a **rebuild** of your container.
 
-![Access Env Params](/images/content/container-service-environment-menu.png){: style="border: 1px solid #ccc;padding:5px;margin-bottom:25px;" }
-![Access Env Params Overview](/images/content/container-service-environment-overview.png){: style="border: 1px solid #ccc;padding:5px;" }
+![Access Env Params](/images/content/standalone-ui/container-service-environment-menu.png){: style="border: 1px solid #ccc;padding:5px;margin-bottom:25px;" }
+![Access Env Params Overview](/images/content/standalone-ui/container-service-environment-overview.png){: style="border: 1px solid #ccc;padding:5px;" }

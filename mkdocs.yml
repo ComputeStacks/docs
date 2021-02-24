@@ -2,9 +2,11 @@ site_name: ComputeStacks Documentation
 theme: 
   name: material
   custom_dir: overrides
-  features:
-    - instant
-    - tabs
+  features:    
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - toc.integrate
   favicon: images/favicon.png
   icon:
     logo: fontawesome/duotone/books
@@ -20,9 +22,14 @@ markdown_extensions:
   - meta
   - smarty
   - pymdownx.details
+  - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
   - toc:
       permalink: true
+      toc_depth: 3
 plugins:
   - git-revision-date-localized:
       type: timeago
@@ -31,3 +38,48 @@ plugins:
   - search
   - macros:
       include_dir: snippets
+nav:
+  - Home: 'index.md'
+  - Getting Started:
+    - Overview: 'getting_started/index.md'
+    - Architecture: 'getting_started/architecture_overview.md'
+    - Community Chat: 'getting_started/community.md'
+    - Notifications: 'getting_started/notifications.md'    
+    - Installation:
+      - Plan: 'getting_started/installation/0_requirements.md'
+      - Prepare: 'getting_started/installation/1_prepare.md'
+      - Run: 'getting_started/installation/2_perform.md'
+      - Finalize: 'getting_started/installation/3_finalize.md'
+    - Integrations:
+      - cPanel: 'getting_started/integrations/cpanel_plugin.md'
+      - WebHooks: 'getting_started/integrations/webhooks.md'
+      - WHMCS: 'getting_started/integrations/whmcs_plugin.md'
+  - Admin Guide:
+    - Overview: 'admin_guide/index.md'
+    - Billing:
+      - Overview: 'admin_guide/billing/index.md'
+      - Billing Plans: 'admin_guide/billing/billing_plans.md'
+      - Setup Free Trials: 'admin_guide/billing/free_trial.md'
+      - Handle Invoicing & Payments: 'admin_guide/billing/integrations.md'
+    - Cluster Management:
+      - Rename Region: 'admin_guide/cluster_management/change_region_name.md'
+      - Controller Database: 'admin_guide/cluster_management/cs_database.md'
+      - Load Balancer: 'admin_guide/cluster_management/load_balancer.md'
+  - User Guide:
+    - Overview: 'user_guide/index.md'
+    - Backups: 'user_guide/backups.md'
+    - Developer Tools: 'user_guide/developer-tools.md'
+    - Container Images:
+      - ElasticSearch: 'user_guide/container_images/elastic-search.md'
+      - Redis: 'user_guide/container_images/redis.md'
+      - Wordpress: 'user_guide/container_images/wordpress.md'
+      - WHMCS: 'user_guide/container_images/whmcs.md'
+    - Core Concepts:
+      - Sending Mail: 'user_guide/core-concepts/mail.md'
+      - SSH & File Access: 'user_guide/core-concepts/ssh.md'
+    - How To:
+      - Building ImageS: 'user_guide/how-to/building-images.md'
+      - Cloning Projects: 'user_guide/how-to/clone-project.md'
+      - Migrating Existing Application: 'user_guide/how-to/moving.md'
+    - Third Party:
+      - Cloudflare: 'user_guide/third-party/cloudflare.md'

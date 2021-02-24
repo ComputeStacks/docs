@@ -14,5 +14,4 @@ In addition to the technical limitations, due to the lack of mail volume and oth
 Example SMTP services:
 
 * [Postmark](https://postmarkapp.com){: target="_blank" }
-* [Sendgrid](https://sendgrid.com){: target="_blank" }
 * [Sendinblue](https://www.sendinblue.com){: target="_blank" }
