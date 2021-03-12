@@ -65,9 +65,6 @@ nav:
       - Rename Region: 'admin_guide/cluster_management/change_region_name.md'
       - Controller Database: 'admin_guide/cluster_management/cs_database.md'
       - Load Balancer: 'admin_guide/cluster_management/load_balancer.md'
-    - Admin API:
-      - Overview: 'admin_guide/api/index.md'
-      - Users: 'admin_guide/api/users.md'
     - Custom Integrations:
       - API Only: 'admin_guide/custom_integration/full_api.md'
   - User Guide:
@@ -88,3 +85,25 @@ nav:
       - Migrating Existing Application: 'user_guide/how-to/moving.md'
     - Third Party:
       - Cloudflare: 'user_guide/third-party/cloudflare.md'
+  - Admin API:
+    - Overview: 'admin_api/index.md'
+    - Images: 'admin_api/images/index.md'
+    - Projects: 'admin_api/projects/index.md'    
+    - Billing: 
+      - Overview: 'admin_api/billing/index.md'
+      - Products: 'admin_api/billing/products.md'
+      - Billing Plans: 'admin_api/billing/billing_plans.md'
+      - Billing Resources: 'admin_api/billing/resources.md'
+      - Billing Phases: 'admin_api/billing/phases.md'
+      - Resource Prices: 'admin_api/billing/prices.md'
+    - Infrastructure:
+      - Overview: 'admin_api/infrastructure/index.md'
+      - Regions: 'admin_api/infrastructure/locations.md'
+      - Availability Zones: 'admin_api/infrastructure/regions.md'
+      - Nodes: 'admin_api/infrastructure/nodes.md'
+    - Subscription Management: 
+      - Subscriptions: 'admin_api/subscriptions/subscriptions.md'
+      - Usage: 'admin_api/subscriptions/usage.md'
+    - User Management:
+      - Users: 'admin_api/users/index.md'
+      - Groups: 'admin_api/users/user_groups.md'

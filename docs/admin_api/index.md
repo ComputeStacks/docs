@@ -9,3 +9,9 @@ When building your custom integration, you will need acquire the user's API cred
 
 1. Store API credentials for the user locally in your application
 2. Use OAuth to gain temporary access only when the user specifically approves it _(recommended)_.
+
+---
+
+!!! note "A note about types"
+    * `DateTime` will be returned as a `String`
+    * `Decimal` when referring to prices will be returned as a `String`.
