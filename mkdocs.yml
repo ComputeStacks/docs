@@ -87,8 +87,9 @@ nav:
       - Cloudflare: 'user_guide/third-party/cloudflare.md'
   - Admin API:
     - Overview: 'admin_api/index.md'
+    - Container Services: 'admin_api/container_services/index.md'
     - Images: 'admin_api/images/index.md'
-    - Projects: 'admin_api/projects/index.md'    
+    - Projects: 'admin_api/projects/index.md'
     - Billing: 
       - Overview: 'admin_api/billing/index.md'
       - Products: 'admin_api/billing/products.md'
