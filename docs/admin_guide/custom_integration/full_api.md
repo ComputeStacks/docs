@@ -131,7 +131,7 @@ Will return:
 
 ### Create The Order
 
-`POST /api/order`
+`POST /api/orders`
 
 ```json
 {
@@ -177,7 +177,7 @@ This will return
 
 The project is created in the background, so we won't be able to return it immediately. You will need to take the Order ID and query us for the project:
 
-`GET /api/order/{id}`
+`GET /api/orders/{id}`
 
 Keep checking this until you see `"status": "completed"` and you have `order.project.id`.
 
