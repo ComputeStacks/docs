@@ -48,7 +48,7 @@ Our load balancer ([HAProxy](http://www.haproxy.org){: target="_blank" }) runs o
 
 Our default configuration is to run our containers using locally-mounted storage volumes. This provides both performance, stability, and cost benefits over shared/clustered storage, and for our typical customer, provides the best fit for their business model.
 
-However, if you have different uptime / performance targets that you need to hit, we can work with a number of different shared storage platforms. 
+However, we understand that for some deployments it makes sense to have high-availability for your container services. In those use-cases, we can use NFS storage for our container volumes, which would allow your containers to automatically failover to another node.
 
 ### Backups
 
