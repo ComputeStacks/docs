@@ -53,7 +53,7 @@
     <span class=p>}</span>
   <span class=p>]</span>
 <span class=p>}</span>
-</code></pre></div> <h2 id=build-order>Build Order<a class=headerlink href=#build-order title="Permanent link">&para;</a></h2> <h3 id=create-the-order>Create The Order<a class=headerlink href=#create-the-order title="Permanent link">&para;</a></h3> <p><code>POST /api/order</code></p> <div class=highlight><pre><span></span><code><span class=p>{</span>
+</code></pre></div> <h2 id=build-order>Build Order<a class=headerlink href=#build-order title="Permanent link">&para;</a></h2> <h3 id=create-the-order>Create The Order<a class=headerlink href=#create-the-order title="Permanent link">&para;</a></h3> <p><code>POST /api/orders</code></p> <div class=highlight><pre><span></span><code><span class=p>{</span>
   <span class=nt>&quot;order&quot;</span><span class=p>:</span> <span class=p>{</span>
     <span class=nt>&quot;project_name&quot;</span><span class=p>:</span> <span class=s2>&quot;my test project&quot;</span><span class=p>,</span>
     <span class=nt>&quot;location_id&quot;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span> <span class=err>#</span> <span class=err>/api/loca</span><span class=kc>t</span><span class=err>io</span><span class=kc>ns</span>
@@ -85,7 +85,7 @@
     <span class=nt>&quot;load_balancer_ip&quot;</span><span class=p>:</span> <span class=s2>&quot;192.168.1.10&quot;</span>
   <span class=p>}</span>
 <span class=p>}</span>
-</code></pre></div> <h3 id=locate-the-project>Locate the project<a class=headerlink href=#locate-the-project title="Permanent link">&para;</a></h3> <p>The project is created in the background, so we won&rsquo;t be able to return it immediately. You will need to take the Order ID and query us for the project:</p> <p><code>GET /api/order/{id}</code></p> <p>Keep checking this until you see <code>"status": "completed"</code> and you have <code>order.project.id</code>.</p> <div class=highlight><pre><span></span><code><span class=p>{</span>
+</code></pre></div> <h3 id=locate-the-project>Locate the project<a class=headerlink href=#locate-the-project title="Permanent link">&para;</a></h3> <p>The project is created in the background, so we won&rsquo;t be able to return it immediately. You will need to take the Order ID and query us for the project:</p> <p><code>GET /api/orders/{id}</code></p> <p>Keep checking this until you see <code>"status": "completed"</code> and you have <code>order.project.id</code>.</p> <div class=highlight><pre><span></span><code><span class=p>{</span>
   <span class=nt>&quot;order&quot;</span><span class=p>:</span> <span class=p>{</span>
     <span class=nt>&quot;id&quot;</span><span class=p>:</span> <span class=s2>&quot;f5a34c0f-e9e2-45e0-9bba-d342d12517fc&quot;</span><span class=p>,</span>
     <span class=nt>&quot;status&quot;</span><span class=p>:</span> <span class=s2>&quot;completed&quot;</span><span class=p>,</span>
@@ -104,7 +104,7 @@
     <span class=p>}</span>
   <span class=p>}</span>
 <span class=p>}</span>
-</code></pre></div> <p>You can now use the project ID to manage the project as normal.</p> <hr> <div class=md-source-date> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2021-03-02T00:15:48+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-03-02</span> </small> </div> </article> </div> </div> </main> <!-- Override https://github.com/squidfunk/mkdocs-material/blob/master/material/partials/footer.html --> <script>
+</code></pre></div> <p>You can now use the project ID to manage the project as normal.</p> <hr> <div class=md-source-date> <small> Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class=timeago datetime=2021-03-16T14:37:33+00:00 locale=en></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-03-16</span> </small> </div> </article> </div> </div> </main> <!-- Override https://github.com/squidfunk/mkdocs-material/blob/master/material/partials/footer.html --> <script>
 window.belcoConfig = {
   shopId: 'qMeM9TQt8D5dQSc3j'
 };
