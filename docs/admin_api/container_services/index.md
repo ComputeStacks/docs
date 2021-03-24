@@ -9,7 +9,7 @@ description: Container Services API
 `GET /api/admin/container_services`
 
 !!! tip ""
-    add `?all=true` to include same data as in end-user api.
+    add `?all=true` to include same data as in end-user api, plus the `project` and `user` objects from the schema below.
     
 ??? abstract "Schema"
     * `container_services`: Array
