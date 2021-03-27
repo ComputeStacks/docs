@@ -102,6 +102,9 @@ nav:
       - Regions: 'admin_api/infrastructure/locations.md'
       - Availability Zones: 'admin_api/infrastructure/regions.md'
       - Nodes: 'admin_api/infrastructure/nodes.md'
+    - Networking:
+      - Domains: 'admin_api/networking/domains.md'
+      - Ingress Rules: 'admin_api/networking/ingress_rules.md'
     - Subscription Management: 
       - Subscriptions: 'admin_api/subscriptions/subscriptions.md'
       - Usage: 'admin_api/subscriptions/usage.md'
