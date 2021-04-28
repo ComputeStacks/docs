@@ -50,7 +50,7 @@ You have two ways of connecting to ComputeStacks:
 
 !!! abstract  "Automatically creating the user and store the credentials in cPanel"
 
-    This is the has the least amount of friction for the user. In this mode, the cPanel plugin will automatically create a user in ComputeStacks, and store the credentials locally in cPanel's secret store for future use.
+    This has the least amount of friction for the user. In this mode, the cPanel plugin will automatically create a user in ComputeStacks, and store the credentials locally in cPanel's secret store for future use.
 
     To set up your plugin in this configuration, create an application in ComputeStacks with the following settings:
 
@@ -59,9 +59,19 @@ You have two ways of connecting to ComputeStacks:
     * Scopes: `public`, `register`.
     * Owner: none
 
-    This will be used to perform the initial registration and account setup. The cPanel plugin will authentication credentials locally and perform automatic authentication in the future. 
+    This will be used to perform the initial registration and account setup. The cPanel plugin will generate the authentication credentials locally, and perform automatic authentication in the future. 
 
-    Now create the same app under as the previous section, but this time set the **Redirect URI** to: `urn:ietf:wg:oauth:2.0:oob`. This will be the app ID used to identify what our user can do with their API credentials.
+    The application ID and secret will be entered into `setupAppID` and `setupAppSecret` in your `computestacks.ini` thats created during the _Build Plugin Package_ step.
+
+    Now create another application with:
+
+    * Redirect URI: `urn:ietf:wg:oauth:2.0:oob`
+    * Confidential: `false` (unchecked)
+    * Scopes: Select all except admin and register.
+    * Owner: none
+
+    You will only need the application ID, which will also be placed in the `computestacks.ini` file under `appID`.
+
 
 ## Install Plugin on cPanel Server
 
