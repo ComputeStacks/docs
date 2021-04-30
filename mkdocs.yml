@@ -43,6 +43,7 @@ nav:
   - Getting Started:
     - Overview: 'getting_started/index.md'
     - Architecture: 'getting_started/architecture_overview.md'
+    - Community: 'getting_started/community.md'
     - Notifications: 'getting_started/notifications.md'    
     - Installation:
       - Plan: 'getting_started/installation/0_requirements.md'

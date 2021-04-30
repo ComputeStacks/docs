@@ -1,1 +1,1 @@
-* Join us on [Slack](https://slack.computestacks.com){: target="_blank" }.
+* Learn about our Slack and Discord [communities](/getting_started/community).
