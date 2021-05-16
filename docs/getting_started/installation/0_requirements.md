@@ -15,9 +15,7 @@ You may purchase, or request a free demo license key, here: [accounts.computesta
 
 ## Supported Linux Distribution
 
-Our recommended linux distribution is **Debian 10 Buster**.
-
-Previously we required **CentOS 7**, and will continue to support that as well.
+Our supported linux distribution is **Debian 10 Buster**.
 
 ## Domain Names
 

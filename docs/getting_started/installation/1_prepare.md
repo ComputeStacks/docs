@@ -74,29 +74,11 @@ b) Backup jobs are assigned to the node by their hostname. If there is a mismatc
 
 Please ensure the following packages have been installed prior to running the ansible installation.
 
-#### Debian 10
 !!! example ""
 
     ```bash
     apt update && apt -y install openssl ca-certificates linux-headers-amd64 python3 python3-pip python3-openssl python3-apt python3-setuptools python3-wheel && pip3 install ansible
     ```
-
-#### CentOS 7
-!!! example ""
-
-    ```bash
-    yum -y update && yum -y install epel-release kernel-headers && yum -y install ansible
-    ```
-
-
-Additionally, we require `selinux` to be enabled when using CentOS 7
-
-??? question "How to enable SELINUX"
-    * Check if it's enabled and active by running: `sestatus`
-    * If SELinux status: is not enabled, then please
-      * Edit `/etc/selinux/config` and set `SELINUX=enforcing`
-      * `touch /.autorelabel`
-      * `reboot`
 
 ### Network MTU Settings
 
@@ -106,11 +88,6 @@ If you're using a setting other than the default 1500, please add the following 
 container_network_mtu: 1400 # Set the desired MTU for containers to use
 ```
 
-### IPv6 for Container Nodes
-
-Due to an ongoing issue with the container network platform we use, IPv6 is currently not supported on our container nodes. We're able to bring ipv6 connectivity by either using a dedicated load balancer on a separate virtual machine, or by configuring the controller to proxy ipv6 traffic.
-
-For the time being, our installer will disable ipv6 directly on the node. However, we recommend also cleaning out the `/etc/sysconfig/network-scripts/ifcfg-*` files to remove any ipv6 specific settings, and setting `IPV6INIT=no`.
 
 ---
 Next Step: [Perform Installation](2_perform.md)
