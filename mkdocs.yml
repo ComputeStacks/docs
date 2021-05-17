@@ -80,7 +80,7 @@ nav:
       - Sending Mail: 'user_guide/core-concepts/mail.md'
       - SSH & File Access: 'user_guide/core-concepts/ssh.md'
     - How To:
-      - Building ImageS: 'user_guide/how-to/building-images.md'
+      - Building Images: 'user_guide/how-to/building-images.md'
       - Cloning Projects: 'user_guide/how-to/clone-project.md'
       - Migrating Existing Application: 'user_guide/how-to/moving.md'
     - Third Party:

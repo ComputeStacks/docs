@@ -40,9 +40,11 @@ For clustered environments, we recommend you create a dedicated private network 
 Each container is given a private IP Address, and by default can only communicate with other containers in the same project. If you choose to allow external connectivity, then our load balancer will forward `80/443` to your container.
 
 #### External Connectivity
-ComputeStacks supports `http` and `tcp` traffic. All `ssl` and `tls` traffic is, by default, terminated by our shared load balancer. If a user wishes to manage `tls` connections on their own, they have the option of disabling that feature.
+ComputeStacks supports `http`, `tcp`, and `udp` traffic. With `http` and `tcp`, the user has the option to route the traffic through our global load balancer and enable SSL/TLS offloading. (HTTP by default will always route this way).
 
 Our load balancer ([HAProxy](http://www.haproxy.org){: target="_blank" }) runs on each node in the availability zone, and shares a single floating IP. In the event of a node failure, we use pacemaker & corosync to move that floating IP to another node in the cluster. We maintain the same configuration on each node so that all load balancers are able to serve traffic immediately.
+
+Depending on your platform, you may also choose to allocated public IP addresses to each container. In order for this to work, you will need to peer (BGP) with ComputeStacks.
 
 ### Container Storage
 
@@ -95,11 +97,11 @@ All of our cluster examples will require:
 #### Small Cluster
 
 !!! question ""
-    Container Registry, Prometheus & loki run on the controller
+    Container Registry, Metrics run on the controller
 
 !!! abstract "Single Region"
     Server Role      | CPU     | Memory | Storage | Network Notes
-    -----------------|---------|--------|---------|----------------------------------------------------------------------------------
+    -----------------|---------|--------|---------|-------------------------
     Controller       | 4 Cores | 8 GB   | 50 GB   | Single public IP address
     Container Node 1 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
     Container Node 2 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
@@ -110,40 +112,40 @@ All of our cluster examples will require:
 
 !!! abstract "Medium Cluster"
     Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|----------------------------------------------------------------------------------
+    -------------------|---------|--------|---------|-------------------------
     Controller         | 4 Cores | 10 GB  | 50 GB   | Single public IP address
     Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
     Backup Server      | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
     Container Registry | 2 Cores | 2 GB   | 150 GB  | 1 public, 1 private
-    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
+    Metrics            | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 #### Multi-Region Cluster
 
 !!! abstract "Shared Resources"
     Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|----------------------------------------------------------------------------------
+    -------------------|---------|--------|---------|-------------------------
     Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
 
 !!! example "Region 1"
-    Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|----------------------------------------------------------------------------------
-    Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server      | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
-    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
+    Server Role      | CPU     | Memory | Storage | Network Notes
+    -----------------|---------|--------|---------|--------------------
+    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
+    Metrics          | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 !!! example "Region 2"
-    Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|----------------------------------------------------------------------------------
-    Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server      | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
-    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
+    Server Role      | CPU     | Memory | Storage | Network Notes
+    -----------------|---------|--------|---------|--------------------
+    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
+    Metrics          | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 ### Single Region, Multi-AZ
 
@@ -154,23 +156,23 @@ All of our cluster examples will require:
 
 !!! abstract "Shared Resources"
     Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|----------------------------------------------------------------------------------
+    -------------------|---------|--------|---------|---------------------------------------------------------
     Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
     Backup Server      | 1 Core  | 1 GB   | 350 GB  | 1 public, 1 private (private is accessible to both AZ's)
-    Prometheus & Loki  | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
+    Metrics            | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
 !!! example "Region 1, AZ 1"
-    Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|----------------------------------------------------------------------------------
-    Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    
+    Server Role      | CPU     | Memory | Storage | Network Notes
+    -----------------|---------|--------|---------|--------------------
+    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+        
 
 !!! example "Region 1, AZ 2"
-    Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|----------------------------------------------------------------------------------
-    Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Server Role      | CPU     | Memory | Storage | Network Notes
+    -----------------|---------|--------|---------|--------------------
+    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private

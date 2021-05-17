@@ -154,17 +154,18 @@ This tells ComputeStacks how to route traffic to your container.
 
 * **Port**: What port is the container listening on? 
 * **Protocol**: Define the protocol. For HTTP/S, all external traffic will be routed from 80/443, to the port defined in the first step. TCP/TLS will be assigned a random port.
+* **Enable External Access**: Setting this to true will enable external access either through our load balancer, or a NAT rule on the host.
 
 ##### Load Balancer Options
 
-* **Enable External Access**: Setting this to true will enable external access from the load balancer.
 * **TCP Proxy Options**: In general, this should always be disabled, otherwise you could break communication with your app. If your application specifically supports the `send-proxy` option, you can configure it here. ([learn more](https://cbonte.github.io/haproxy-dconv/1.8/configuration.html#5.2-send-proxy){: target="_blank" })
 * **Cloudflare**: _This is only available when editing the ingress rule on a running service._ This allows you to restrict access to your service to only Cloudflare. ([learn more](../third-party/cloudflare))
+* **Enable TCP LoadBalancing**: If true, traffic will be routed through the global load balancer. You _must_ enable this if you plan to use ComputeStacks to manage domain names and SSL Certificates. Otherwise, you will need to configure that directly in your container.
 
 #### Persistent Storage (Volumes)
 
 Any data changed or created by your container can be lost at any time, so it's important create volumes to persist your data. In addition to defining your volumes, you may also configure our integrated backup tool. ([learn more](../backups.md))
 
-We recommend only 1 volume per container, however we recognize that sometimes that is not feasible. We, for example, use 2 volumes in our [OpenLiteSpeed based images](https://github.com/ComputeStacks/docker/master/tree/php/open-litespeed){: target="_blank" }.
+We recommend only 1 volume per container, however we recognize that sometimes that is not feasible. For example, we use 2 volumes in our [OpenLiteSpeed based images](https://github.com/ComputeStacks/docker/master/tree/php/open-litespeed){: target="_blank" }.
 
 The primary reason we recommend using a single volume is to ensure that when backups are performed, they're getting a consistent point in time snapshot of your data.
