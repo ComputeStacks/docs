@@ -1,7 +1,26 @@
 <!-- Override https://github.com/squidfunk/mkdocs-material/blob/master/material/partials/footer.html -->
 <script>
-window.belcoConfig = {
-  shopId: 'qMeM9TQt8D5dQSc3j'
-};
+    window.Papercups = {
+        config: {
+            accountId: "21bacdbb-362f-4eb0-86f3-b0d76fc60308",
+            title: "Welcome to ComputeStacks",
+            subtitle: "Ask us anything in the chat window below 😊",
+            primaryColor: "#198fce",
+            greeting: "",
+            awayMessage: "",
+            newMessagePlaceholder: "Start typing...",
+            showAgentAvailability: false,
+            agentAvailableText: "We're online right now!",
+            agentUnavailableText: "We're away at the moment.",
+            requireEmailUpfront: true,
+            iconVariant: "outlined",
+            baseUrl: "https://chat-widget.computestacks.com",
+        },
+    };
 </script>
-<script>!function(n,o){var e=window.belcoFunction||"Belco";window[e]||(window[e]=function(n){if(void 0===window[e][n])throw new Error("Unknown method");return window[e][n].apply(window[e],Array.prototype.slice.call(arguments,1))}),window[e]._q=[];for(var i=["init","sync","track","page","open","close","toggle","on","once","off","anonymousId","customer","reset","sendMessage"],t=function(n){return function(){var o=Array.prototype.slice.call(arguments);return o.unshift(n),window[e]._q.push(o),window[e]}},w=0;w<i.length;w++){var r=i[w];window[e][r]=t(r)}window[e].load=function(e){if(!n.getElementById("belco-js")){var i=n.createElement(o);i.async=!0,i.id="belco-js",i.type="text/javascript",i.src="//cdn.belco.io/v2/widget.js",i.onload=function(n){"function"==typeof e&&e(n)};var t=n.getElementsByTagName(o)[0];t.parentNode.insertBefore(i,t)}},window.belcoConfig&&window[e].load(function(){window[e]("init",window.belcoConfig)})}(document,"script");</script>
+<script
+  type="text/javascript"
+  async
+  defer
+  src="https://chat-widget.computestacks.com/widget.js"
+></script>
