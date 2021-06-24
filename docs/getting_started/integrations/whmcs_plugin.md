@@ -11,7 +11,8 @@ The ComputeStacks integration for WHMCS provides an easy onboarding experience f
 * Each service in WHMCS corresponds to a single ComputeStacks account
 * ClientArea output for quick overview
 * Easy SingleSignOn buttons in both ClientArea and Admin
-* Support for charging an initial deposit on registration
+* Support for charging an initial deposit on registration, which is then added as an account credit.
+* Multiple Currency support
 * Import CS accounts into WHMCS using the [Server Sync Tool](https://docs.whmcs.com/Server_Sync_Tool){: target="_blank" }
 
 [ ![Admin](/images/content/whmcs/whmcs-admin-service.png){: style="border: 1px solid #ccc;padding:5px;float:left;width:46%;" } ](/images/content/whmcs/whmcs-admin-service.png){: target="_blank" }
@@ -54,11 +55,11 @@ To create your ComputeStacks product, create a new product group and product wit
     * _Note: This will take place at the moment the order is paid._
   * Module Setup:
     * With Account Credits, we recommend either:
-      * _**Automatically setup the product as soon as the first payment is received**_ (preferred for best user experience)
-      * _Automatically setup the product when you manually accept a pending order_
+        * _**Automatically setup the product as soon as the first payment is received**_ (preferred for best user experience)
+        * _Automatically setup the product when you manually accept a pending order_
     * Without Account Credits, we recommend either:
-      * _**Automatically setup the product as soon as an order is placed**_ (preferred for best user experience)
-      * _Automatically setup the product when you manually accept a pending order_
+        * _**Automatically setup the product as soon as an order is placed**_ (preferred for best user experience)
+        * _Automatically setup the product when you manually accept a pending order_
 
 ## Configure ComputeStacks
 
@@ -73,18 +74,23 @@ Before we proceed, you will need to first [generate API credentials](https://doc
     * `Products -> UpdateClientProduct`
     * `Servers -> GetHealthStatus`
 
-!!! tip "WHMCS Access Control"
-    Please see the [documentation](https://developers.whmcs.com/api/access-control/){: target="_blank" }. You can either allow the IP Address of ComputeStacks, or configure an Access Key.
+!!! danger "WHMCS Access Control"
 
-In ComputeStacks, navigate to the `Administrator -> Advanced Settings -> Billing`.
+    Please add the controller IP address to the **API IP Access Restriction** [section in the WHMCS settings](https://docs.whmcs.com/Security_Tab#API_IP_Access_Restriction){: target="_blank" }.
 
-1. Edit `BILLING_MODULE` and set the value to `Whmcs` and click save. Once you do, additional settings will become available.
-2. Set both `WHMCS_API_SECRET` and `WHMCS_API_KEY`
-3. If you set an API Access Key in WHMCS, then you can enter that under `WHMCS_ACCESS_KEY`.
+    Alternatively, setup an [access key](https://developers.whmcs.com/api/access-control/){: target="_blank" }.
+
+In ComputeStacks, navigate to the `Administrator -> Advanced Settings -> Billing Module`.
+
+1. Edit **Billing Module** and choose 'WHMCS' and click save. Once you do, additional settings will become available.
+2. Set both **Whmcs Api Key** and **Whmcs Api Secret**
+3. If you set an API Access Key in WHMCS, then you can enter that under **Whmcs Access Key**.
 
 With WHMCS enabled, ComputeStacks will by default disable the registration form to ensure all new users come through WHMCS. Administrators can manually create users from within the admin.
 
-If you wish to keep the registration form on, you can manually enable that under `Settings -> Advanced Settings -> General` and setting `SIGNUP_FORM` to `t`. Keep in mind that users will be able to register and will _not_ be charged for their usage unless you manually set their `external_id` to the ID of their WHMCS service.
+If you wish to keep the registration form on, you can manually enable that under `Settings -> Advanced Settings -> General` and clicking **Signup Form** `No`. Clicking will toggle to `yes`.
+
+Keep in mind that enabling user registration on the portal will bypass WHMCS and those users will not be charged. 
 
 The final step is to set your prices under `Settings -> Billing Plans`.
 

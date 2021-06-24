@@ -27,16 +27,16 @@ The following roles will require domain names:
 <tbody>
     <tr>
         <td><b>Controller</b></td>
-        <td>this is the main URL for the service. Examples include: portal, dashboard, cp,...</td>
+        <td>this is the main URL for the service. Examples include: `portal`, `dashboard`, or `cp`.</td>
     </tr>
     <tr>
         <td><b>Container Registry</b></td>
-        <td>We recommend a shorter URL like cr, registry, ...</td>
+        <td>Examples: `cr.`, or `registry.`.</td>
     </tr>
     <tr>
         <td><b>Metrics</b></td>
         <td>
-            For our log aggregation service and container metrics. This can be <code>metrics.region.example.com</code>, or something like that. We generally recommend that each region have their own metrics server and, ideally, accessible over private networks. We ask for a domain to generate an ACME certificate, and will then hard code the private IPs internally.
+            For our log aggregation service and container metrics. This should be specific to the region it's in, such as: <code>metrics.region.example.com</code>.
         </td>
     </tr>
     <tr>
@@ -47,10 +47,10 @@ The following roles will require domain names:
             <em>Each Availability zone will need to have their own domain, which is why I recommend including the region and AZ in the URL. For example, if you have regions in Amsterdam and Frankfurt, you could use something like this:</em>
             <br>
             <pre>
-a.ams.example.net <-- Availability Zone 1
-b.ams.example.net <-- Availability Zone 2
-a.fra.example.net
-b.fra.example.net
+a.ams.example.net <-- Region AMS, Availability Zone 1
+b.ams.example.net <-- Region AMS, Availability Zone 2
+a.fra.example.net <-- Region FRA, Availability Zone 1
+b.fra.example.net <-- Region FRA, Availability Zone 2
             </pre>
         </td>
     </tr>
@@ -74,7 +74,9 @@ We require a DNS integration for our platform; there are two supported options:
 1. Use our free hosted DNS service, or; 
 2. Host your own PowerDNS servers.
 
-During installation, the default will be to use a shared demo account. Please contact us for your hosted dns credentials, or for help setting up your own PowerDNS cluster.
+
+!!! danger ""
+    During installation, the default will be to use a shared demo account. Please contact us for your hosted dns credentials, or for help setting up your own PowerDNS cluster.
 
 ## Linux Users and Groups
 
@@ -90,18 +92,23 @@ cat /etc/group | grep 1001
 ```
 
 ## Network Setup
-At a minimum, we require a single public IP Address _per server_. 
-
-However, the recommended network configuration for each server is: 1 Public, 1 Private. Each server should be able to communicate over the private network.
+Our recommended ip setup is: 1 Public, 1 Private, per server. Please see our [example configurations](../architecture_overview.md#example-configurations) for more details.
 
 !!! danger ""
-    Please ensure that the container node does not have any kind of source/destination filtering on it's private network interface. If this is not possible, you will need to set `calico_network_ipip` to `true` when building your ansible inventory
+    Please ensure that the container node does not have any kind of source/destination filtering on it's private network interface. If this is not possible, you will need to set `calico_network_ipip` to `true` in your `inventory.yml` file.
+
+    Typically if you have your own L2 network, this won't be a problem. Where this typically is an issue is in cloud environments, at which case you will need to check if you can disable that. Falling back to `ip-in-ip` tunneling is possible, but not recommended for production environments. Most of the larger cloud providers will allow you to do this. Please contact us if you need assistance.
 
 For clusters (3+ container nodes), we will also require a _Floating IP Address_. We will use arp to announce that ip on one of the 3 nodes, and handle failover automatically through corosync and pacemaker.
+
+!!! tip ""
+    If you do not want a floating IP, or are unable to allocate one, then please set `enable_floating_ip: false` and `floating_ip: ` to the IP of first node, in your `inventory.yml` file.
 
 
 ## Disk Setup
 If you have the option to select the partition layout for the container nodes, please place most of your disk storage at `/var/lib/docker`. You can skip a dedicated `/home` partition, as this is not used in our environment.
+
+Alternatively, create a single `/` partition with all available disk space.
 
 ??? example "Example Disk Layout"
 
@@ -114,26 +121,17 @@ If you have the option to select the partition layout for the container nodes, p
 
 ## Minimum Server Requirements
 
-All CPU Cores should be newer x86 2Ghz+ Intel or AMD processors.
+Here are our minimum requirements. If you plan to have customers in your environment running production workloads, we recommend you review our [example configurations](../architecture_overview.md#example-configurations) for better guidance on what we recommend for your cluster. 
 
-!!! tip ""
-    See more example configurations [here](../architecture_overview.md#example-configurations).
+!!! tip
+    All CPU Cores should be newer x86 2Ghz+ Intel or AMD processors.
 
-!!! abstract "Testing Environment"
 
-    Name           | CPU     | Memory | Disk
-    ---------------|---------|--------|------
-    Controller     | 4 Cores | 8 GB   | 50 GB
-    Container Node | 2 Core  | 4 GB   | 50 GB
+Name           | CPU     | Memory | Disk
+---------------|---------|--------|------
+Controller     | 4 Cores | 8 GB   | 50 GB
+Container Node | 4 Cores | 8 GB   | 50 GB
 
-!!! abstract "Production Environment"
-
-    Name           | CPU     | Memory | Disk
-    ---------------|---------|--------|-----------------------------------------------------
-    Controller     | 4 Cores | 8 GB   | 50 GB
-    Backup Server  | 1 Core  | 1 GB   | Start with 50% of total disk capacity in the cluster
-    Container Node | 4 Core  | 12 GB  | 100 GB
-    Metrics Server | 4 Core  | 8 GB   | 25 GB
 
 ---
 Next Step: [Preparing Installation Resources](1_prepare.md)

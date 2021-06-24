@@ -42,9 +42,9 @@ Each container is given a private IP Address, and by default can only communicat
 #### External Connectivity
 ComputeStacks supports `http`, `tcp`, and `udp` traffic. With `http` and `tcp`, the user has the option to route the traffic through our global load balancer and enable SSL/TLS offloading. (HTTP by default will always route this way).
 
-Our load balancer ([HAProxy](http://www.haproxy.org){: target="_blank" }) runs on each node in the availability zone, and shares a single floating IP. In the event of a node failure, we use pacemaker & corosync to move that floating IP to another node in the cluster. We maintain the same configuration on each node so that all load balancers are able to serve traffic immediately.
+Our load balancer runs on each node in the availability zone, and shares a single floating IP. In the event of a node failure, we use pacemaker & corosync to move that floating IP to another node in the cluster. We maintain the same configuration on each node so that all load balancers are able to serve traffic immediately.
 
-Depending on your platform, you may also choose to allocated public IP addresses to each container. In order for this to work, you will need to peer (BGP) with ComputeStacks.
+Depending on your goals, you may also choose to allocate public IP addresses to each container. Please contact us to discuss this in more detail.
 
 ### Container Storage
 
@@ -54,17 +54,21 @@ However, we understand that for some deployments it makes sense to have high-ava
 
 ### Backups
 
-ComputeStacks uses an in-house developed backup solution, built upon the excellent [borg](https://www.borgbackup.org){: target="_blank" } backup engine. We include specific backup drivers for MySQL/MariaDB and PostgreSQL that ensure consistent and unobtrusive backups. 
+ComputeStacks uses an in-house developed backup solution, built upon the excellent [borg](https://www.borgbackup.org){: target="_blank" } backup tool. We include specific backup drivers for MySQL/MariaDB and PostgreSQL that ensure consistent and unobtrusive backups. 
 
-You will need to provide a separate backup server that will hold your customer's backups. We generally recommend using a separate backup server per availability zone.
+You will need to provide a separate backup server that will hold your customer's backups. Our installation process will automatically configure a base debian install to serve this function. We also recommend that you _do not_ share a single backup server across multiple regions.
 
 ### Container Registry
 
 ComputeStacks offers an integrated container registry to aid in your customers image development. For small deployments, we will run this on the same server as our controller. However, we recommend that this run on it's own server.
 
+### Metrics
+
+As part of our normal installation process, we will configure a dedicated metrics and log aggregation server. This will collect, store, and process logs and metrics from all servers and containers in the cluster. We recommend that you install one metrics server per region. If there is too much latency between the metrics server and the container nodes, alerting and resource usage data could be delayed.
+
 ### DNS
 
-ComputeStacks offers an optional DNS interface. You may choose to use our hosted DNS service for free, or deploy your own PowerDNS service. 
+ComputeStacks offers an optional DNS interface. You may choose to use our hosted DNS service for free, or deploy your own PowerDNS service. The default ansible installer will connect to our shared demo DNS service. Please do not use this in production!
 
 ## Example Configurations
 
@@ -75,31 +79,34 @@ ComputeStacks offers an optional DNS interface. You may choose to use our hosted
 
     _Please see our [installation guide](installation/0_requirements.md#minimum-server-requirements) for our minimum requirements._
 
-
 ### Single-Node Environment
 For small hosting providers who are just getting started. This setup will typically support 20 Wordpress sites with average traffic.
 
 !!! abstract "Single Region, No Cluster"
-    Server Role    | CPU     | Memory | Storage  | Network Notes
-    ---------------|---------|--------|----------|----------------------------------------------------------------------------------
-    Controller     | 4 Cores | 8 GB    | 50 GB   | Single public IP address
-    Container Node | 4 Cores | 12 GB   | 100 GB  | Single public IP Address
-    Backup Server  | 1 Core  | 1 GB   | 100 GB   | 1 public, 1 private
 
-### Cluster Examples
+    _Container registry and metrics run on the controller._
 
-All of our cluster examples will require:
+    Server Role    | CPU     | Memory | Storage | Network Notes
+    ---------------|---------|--------|---------|-------------------------
+    Controller     | 4 Cores | 8 GB   | 50 GB   | Single public IP address
+    Container Node | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
+    Backup Server  | 1 Core  | 1 GB   | 100 GB  | 1 public, 1 private
 
-* A private network shared between all nodes
-    * If possible, disable source/destination filtering. Otherwise you will need to use IP-in-IP.
-* 1 public floating IP _Per Availability Zone_.
 
-#### Small Cluster
+!!! tip "All of our cluster examples will require:"
 
-!!! question ""
-    Container Registry, Metrics run on the controller
+    * A private network shared between all nodes
+        * If possible, disable source/destination filtering. Otherwise you will need to use IP-in-IP.
+    * **1 public floating IP _Per Availability Zone_**. If this is not possible, then disable the floating IP in the `inventory.yml` file and add the IP of the first node as the "floating ip". 
+    * While the controller only needs a single public IP, we generally recommend also giving the controller access to the private network for the nodes and metrics server when possible.
+
+
+### Small Cluster
 
 !!! abstract "Single Region"
+    
+    _Container Registry runs on the controller_
+
     Server Role      | CPU     | Memory | Storage | Network Notes
     -----------------|---------|--------|---------|-------------------------
     Controller       | 4 Cores | 8 GB   | 50 GB   | Single public IP address
@@ -107,45 +114,55 @@ All of our cluster examples will require:
     Container Node 2 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
     Container Node 3 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
     Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
+    Metrics          | 2 Cores | 4 GB   | 35 GB   | 1 public, 1 private
 
-#### Medium Cluster
+### Medium Cluster
 
 !!! abstract "Medium Cluster"
-    Server Role        | CPU     | Memory | Storage | Network Notes
-    -------------------|---------|--------|---------|-------------------------
-    Controller         | 4 Cores | 10 GB  | 50 GB   | Single public IP address
-    Container Node 1   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3   | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server      | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
-    Container Registry | 2 Cores | 2 GB   | 150 GB  | 1 public, 1 private
-    Metrics            | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
 
-#### Multi-Region Cluster
+    _Container Registry runs on the controller_
+
+    Server Role      | CPU      | Memory | Storage | Network Notes
+    -----------------|----------|--------|---------|-------------------------
+    Controller       | 4 Cores  | 10 GB  | 50 GB   | Single public IP address
+    Container Node 1 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Backup Server    | 1 Core   | 1 GB   | 150 GB  | 1 public, 1 private
+    Metrics          | 4 Cores  | 8 GB   | 35 GB   | 1 public, 1 private
+
+### Multi-Region Cluster
 
 !!! abstract "Shared Resources"
+
     Server Role        | CPU     | Memory | Storage | Network Notes
     -------------------|---------|--------|---------|-------------------------
     Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
 
 !!! example "Region 1"
-    Server Role      | CPU     | Memory | Storage | Network Notes
-    -----------------|---------|--------|---------|--------------------
-    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
-    Metrics          | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
+
+    _Private network is just for this AZ_
+
+    Server Role      | CPU      | Memory | Storage | Network Notes
+    -----------------|----------|--------|---------|-------------------------
+    Container Node 1 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Backup Server    | 1 Core   | 1 GB   | 150 GB  | 1 public, 1 private
+    Metrics          | 4 Cores  | 8 GB   | 35 GB   | 1 public, 1 private
 
 !!! example "Region 2"
-    Server Role      | CPU     | Memory | Storage | Network Notes
-    -----------------|---------|--------|---------|--------------------
-    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
-    Metrics          | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
+
+    _Private network is just for this AZ_
+
+    Server Role      | CPU      | Memory | Storage | Network Notes
+    -----------------|----------|--------|---------|-------------------------
+    Container Node 4 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 5 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 6 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Backup Server    | 1 Core   | 1 GB   | 150 GB  | 1 public, 1 private
+    Metrics          | 4 Cores  | 8 GB   | 35 GB   | 1 public, 1 private
 
 ### Single Region, Multi-AZ
 
@@ -159,20 +176,20 @@ All of our cluster examples will require:
     -------------------|---------|--------|---------|---------------------------------------------------------
     Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
-    Backup Server      | 1 Core  | 1 GB   | 350 GB  | 1 public, 1 private (private is accessible to both AZ's)
-    Metrics            | 2 Cores | 2 GB   | 25 GB   | 1 public, 1 private
+    Backup Server      | 1 Core  | 1 GB   | 350 GB  | 1 public, 1 private
+    Metrics            | 4 Cores | 8 GB   | 50 GB   | 1 public, 1 private 
 
 !!! example "Region 1, AZ 1"
     Server Role      | CPU     | Memory | Storage | Network Notes
     -----------------|---------|--------|---------|--------------------
-    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 1 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
         
 
 !!! example "Region 1, AZ 2"
     Server Role      | CPU     | Memory | Storage | Network Notes
     -----------------|---------|--------|---------|--------------------
-    Container Node 1 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 2 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
-    Container Node 3 | 8 Cores | 24 GB  | 150 GB  | 1 public, 1 private
+    Container Node 4 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 5 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
+    Container Node 6 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private

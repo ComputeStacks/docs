@@ -38,8 +38,3 @@ If you do not have your own MTA, we recommend the following services:
 
 * [Postmark](https://postmarkapp.com){: target="_blank" }
 * [Send In Blue](https://sendinblue.com){: target="_blank" }
-
-### Yubikey
-
-You can generate these settings by navigating to: [upgrade.yubico.com/getapikey](https://upgrade.yubico.com/getapikey/){: target="_blank" }
-You will need a yubikey before setting this up. If you do not have one, please contact support and we will generate the credentials for you.

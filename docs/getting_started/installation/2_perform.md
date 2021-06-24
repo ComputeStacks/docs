@@ -12,7 +12,7 @@ Before you run the ansible package, lets quickly run through our checklist and m
 
 - [ ] Servers have been created with the minimum requirements
 - [ ] Required base packages have been installed
-- [ ] Hostnames have been configured
+- [ ] Hostnames have been configured, and are a single-word without a domain.
 - [ ] You have verified connectivity between the servers
 
 **Domains**
