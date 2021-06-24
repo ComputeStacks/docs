@@ -42,7 +42,7 @@ You must install a Wildcard SSL certificate for the LoadBalancer. The LoadBalanc
 During the installation process, a self-signed certificate was automatically generated and installed to the load balancer. To install a valid certificate, you have two options:
 
 1. Purchase a wildcard certificate and install it yourself 
-    * _(You may optionally [purchase](https://accounts.computestacks.com/store/ssl-certificates) one from us for $50/year)_
+    * _(You may optionally purchase one from us for $50/year. Please contact us for details.)_
 2. Use our ACME (LetsEncrypt) service to generate a wildcard certificate for free.
 
 In order to use our ACME wildcard generator, the domain name _must exist_ in the **Settings -> DNS** menu, and the nameservers must be correctly configured.

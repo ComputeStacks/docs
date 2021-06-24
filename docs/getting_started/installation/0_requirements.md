@@ -10,7 +10,7 @@ Our installation process requires [ansible](https://docs.ansible.com/ansible/lat
 
 ## License Key
 
-You may purchase, or request a free demo license key, here: [accounts.computestacks.com](https://accounts.computestacks.com/store/computestacks){: target="_blank" }
+You may purchase, or request a free demo license key, here: [computestacks.com/pricing](https://www.computestacks.com/pricing){: target="_blank" }
 
 
 ## Supported Linux Distribution
