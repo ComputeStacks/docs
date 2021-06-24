@@ -81,10 +81,16 @@ So for Trial and Discount phases, the time frame not only applies to how long a 
 
 ## Pricing
 
-Prices are unique to their parent phase, and can be customized for specific regions, currencies, and quantity. 
+Prices are unique to their parent phase, and can be customized for specific regions, currencies, and quantity.
+
+### Multiple Currencies
+ComputeStacks supports _selling_ in multiple currencies, which you can add to each _Billing Phase_, however we will not automatically convert a currency from a base currency, to another one. 
+
+### Tax & VAT
+ComputeStacks does not calculate tax or VAT. This is generally handled by your billing system ([WHMCS](/getting_started/integrations/whmcs_plugin)), and is done at the time an invoice is generated.
 
 !!! tip ""
-    There is a global default currency set during the installation process, however each user can have a different currency set by Administrators. This, along with billing plans, offers the ability to support multiple currencies under the same installation.
+    There is a global default currency set during the installation process, however each user can have a different currency set by Administrators, or from the billing integration. 
 
 ### Tiers
 
