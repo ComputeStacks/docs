@@ -24,6 +24,28 @@ The ComputeStacks integration for WHMCS provides an easy onboarding experience f
 !!! warning "Service Terminations"
     This plugin will not delete any services in ComputeStacks. When a WHMCS service is terminated, this plugin suspends the account in ComputeStacks, which stops all running services. You will then need to manually delete the user. _If you wish to have WHMCS automatically delete the users in ComputeStacks, please contact your CS support team._
 
+### How It Works
+
+=== "Onboarding New Customer"
+    
+    1. (user) User places an order for "Cloud Account" on your WHMCS installation
+    2. (user) (optional) User is forwarded to payment screen in WHMCS to pay your deposit amount.
+        a. Depending on payment type, details are stored for future use to enable automatic billing.
+    3. (system) Deposit is added as an account credit to users profile
+    4. (system) Upon successful payment, system creates ComputeStacks account and sets up service in WHMCS.
+    5. (user) User navigates to new service in WHMCS
+    6. (user) User clicks "Launch Control Panel"
+    7. (system) SSO happens and user is taken to order screen inside of ComputeStacks
+    8. (user) User places first order
+
+=== "Processing Billing"
+
+    !!! tip ""
+        The day on which invoices are due for automatic process is configurable, but all billable data will be entered into WHMCS on the 1st of the month.
+
+    1. (system) On the last day of the month, around 23:00, ComputeStacks aggregates billing usage and creates billable item in WHMCS
+    2. (system) On the 1st of the month, WHMCS will generate the invoice and (if payment is stored) charge the credit card.
+
 ## Installation
 
 [Download Our Plugin](https://github.com/ComputeStacks/billing-whmcs/archive/master.zip) and upload the contents to your WHMCS server. The folder structure included should match your local installation. Ultimately, the `computestacks` directory under `whmcs/modules/servers/`, should be placed on your WHMCS server at `modules/servers/`.
