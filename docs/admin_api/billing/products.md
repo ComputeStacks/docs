@@ -15,6 +15,7 @@ description: Products API
         * `resource_kind`: String - backup,bandwidth,cpu,ipaddr,memory,storage,local_disk (only for non-packages)
         * `unit`: Integer - (only for non-packages)
         * `unit_type`: String - (only for non-packages)
+        * `group`: String
         * `package`: Object
             * `id`: Integer
             * `cpu`: Decimal - CPU Cores (supports fractional cores as decimal)
@@ -39,6 +40,7 @@ description: Products API
         * `resource_kind`: String - backup,bandwidth,cpu,ipaddr,memory,storage,local_disk (only for non-packages)
         * `unit`: Integer - (only for non-packages)
         * `unit_type`: String - (only for non-packages)
+        * `group`: String
         * `package`: Object
             * `id`: Integer
             * `cpu`: Decimal - CPU Cores (supports fractional cores as decimal)
@@ -65,6 +67,7 @@ Be aware that updating a package through this will completly delete the package,
         * `resource_kind`: String - backup,bandwidth,cpu,ipaddr,memory,storage,local_disk (only for non-packages)
         * `unit`: Integer - (only for non-packages)
         * `unit_type`: String - (only for non-packages)
+        * `group`: String
         * `package`: Object
             * `id`: Integer
             * `cpu`: Decimal - CPU Cores (supports fractional cores as decimal)
@@ -88,6 +91,7 @@ Be sure to add products to billing plans and create price rules.
         * `resource_kind`: String - backup,bandwidth,cpu,ipaddr,memory,storage,local_disk (only for non-packages)
         * `unit`: Integer - (only for non-packages)
         * `unit_type`: String - (only for non-packages)
+        * `group`: String
         * `package`: Object
             * `id`: Integer
             * `cpu`: Decimal - CPU Cores (supports fractional cores as decimal)
