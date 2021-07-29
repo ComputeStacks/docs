@@ -40,6 +40,7 @@ description: User API
       "zip": null,
       "country": "US",
       "vat": null,
+      "labels": {},
       "created_at": "2020-06-09T18:51:59.145Z",
       "updated_at": "2020-10-15T05:49:16.139Z",
       "security_keys": [],
@@ -65,6 +66,47 @@ description: User API
 
 !!! tip "Include Unprocessed Usage"
     You can optionally pass `?include=balance` to see their unprocessed usage. Unprocessed usage is the amount they have accrued that has not yet been sent to your invoice & payment system.
+
+In addition to querying a user by their `user_id`, you may also load a user by the following:
+
+<table>
+<thead>
+  <tr>
+    <th>Attribute</th>
+    <th>Query Param</th>
+    <th>Example</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><code>email</code></td>
+    <td>
+      <code>find_by_email</code>
+    </td>
+    <td>
+      <code>/api/admin/users/{Base64.encode64('john@doe.com')}?find_by_email=true</code>
+    </td>
+  </tr>
+  <tr>
+    <td><code>external_id</code></td>
+    <td>
+      <code>find_by_external_id</code>
+    </td>
+    <td>
+      <code>/api/admin/users/{some-external-id}?find_by_external_id=true</code>
+    </td>
+  </tr>
+  <tr>
+    <td>WHMCS Service ID</td>
+    <td>
+      <code>find_by_label=whmcs_service_id</code>
+    </td>
+    <td>
+      <code>/api/admin/users/{whmcs-service-id}?find_by_label=whmcs_service_id</code>
+    </td>
+  </tr>
+</tbody>
+</table>
 
 ```json
 {
@@ -98,6 +140,7 @@ description: User API
     "vat": null,
     "company_name": "",
     "run_rate": "0.0",
+    "labels": {},
     "created_at": "2020-10-15T05:49:07.272Z",
     "updated_at": "2021-03-01T23:35:37.265Z",
     "security_keys": [],
