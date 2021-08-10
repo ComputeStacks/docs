@@ -67,9 +67,8 @@ Be aware that updating a package through this will completly delete the package,
         * `resource_kind`: String - backup,bandwidth,cpu,ipaddr,memory,storage,local_disk (only for non-packages)
         * `unit`: Integer - (only for non-packages)
         * `unit_type`: String - (only for non-packages)
-        * `group`: String
-        * `package`: Object
-            * `id`: Integer
+        * `group`: String (optional)
+        * `package_attributes`: Object
             * `cpu`: Decimal - CPU Cores (supports fractional cores as decimal)
             * `memory`: String - MB
             * `memory_swap`: Integer - Amount of memory (MB) allowed to swap to disk.
@@ -85,15 +84,14 @@ Be aware that updating a package through this will completly delete the package,
 
 Be sure to add products to billing plans and create price rules.
 
-??? abstract "Schema"
+??? abstract "Create Product Schema"
     * `product`: Object
         * `label`: String
         * `resource_kind`: String - backup,bandwidth,cpu,ipaddr,memory,storage,local_disk (only for non-packages)
         * `unit`: Integer - (only for non-packages)
         * `unit_type`: String - (only for non-packages)
-        * `group`: String
-        * `package`: Object
-            * `id`: Integer
+        * `group`: String (optional)
+        * `package_attributes`: Object
             * `cpu`: Decimal - CPU Cores (supports fractional cores as decimal)
             * `memory`: String - MB
             * `memory_swap`: Integer - Amount of memory (MB) allowed to swap to disk.
@@ -103,6 +101,19 @@ Be sure to add products to billing plans and create price rules.
             * `local_disk`: Integer - Temporary / Local Disk storage (GB)
             * `backup`: Integer - Included backup storage (GB)
 
+
+??? example "Example: Create New Package"
+    ```json
+    {
+        "product": {
+            "label": "example",
+            "package_attributes": {
+                "cpu": "1.0",
+                "memory": 1024
+            }
+        }
+    }
+    ```
 
 ## Delete Product
 
