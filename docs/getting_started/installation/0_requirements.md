@@ -15,7 +15,7 @@ You may purchase, or request a free demo license key, here: [computestacks.com/p
 
 ## Supported Linux Distribution
 
-Our supported linux distribution is **Debian 10 Buster**.
+Our supported linux distribution is **Debian 11 Bullseye**.
 
 ## Domain Names
 

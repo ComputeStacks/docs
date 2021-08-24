@@ -6,7 +6,7 @@ description: Architecture Overview
 
 ComputeStacks is a collection of open-source & commercial software, running in a clustered environment. This guide will walk through some of the key components to help you make an informed decision when planning your environment.
 
-All servers will use Debian 10.
+All servers will use Debian 11.
 
 ## Key Concepts
 
