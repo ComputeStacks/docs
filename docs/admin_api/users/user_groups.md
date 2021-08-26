@@ -19,9 +19,11 @@ description: User Groups API
         * `q_dns_zones`: Integer
         * `q_cr`: Integer
         * `allow_local_volume`: Boolean - When using NFS volume storage, enable this to allow users to choose.
+        * `bill_offline`: Boolean - Continue billing containers when they're stopped. Volumes and backups are always billed. (default: true)
+        * `bill_suspended`: Boolean - Continue billing suspended users. (default: true)
+        * `remove_stopped`: Boolean - Remove stopped containers from the node. Persistent volumes will remain. When the user starts the container, it will be repovisioned automatically. (default: false)
         * `created_at`: DateTime
         * `updated_at`: DateTime
-
 
 ## View User Group
 
@@ -38,6 +40,9 @@ description: User Groups API
         * `q_dns_zones`: Integer
         * `q_cr`: Integer
         * `allow_local_volume`: Boolean - When using NFS volume storage, enable this to allow users to choose.
+        * `bill_offline`: Boolean - Continue billing containers when they're stopped. Volumes and backups are always billed. (default: true)
+        * `bill_suspended`: Boolean - Continue billing suspended users. (default: true)
+        * `remove_stopped`: Boolean - Remove stopped containers from the node. Persistent volumes will remain. When the user starts the container, it will be repovisioned automatically. (default: false)
         * `created_at`: DateTime
         * `updated_at`: DateTime
 
@@ -56,6 +61,9 @@ description: User Groups API
         * `q_dns_zones`: Integer
         * `q_cr`: Integer
         * `allow_local_volume`: Boolean - When using NFS volume storage, enable this to allow users to choose.
+        * `bill_offline`: Boolean - Continue billing containers when they're stopped. Volumes and backups are always billed. (default: true)
+        * `bill_suspended`: Boolean - Continue billing suspended users. (default: true)
+        * `remove_stopped`: Boolean - Remove stopped containers from the node. Persistent volumes will remain. When the user starts the container, it will be repovisioned automatically. (default: false)
 
 
 ## Create User Group
@@ -72,6 +80,9 @@ description: User Groups API
         * `q_dns_zones`: Integer
         * `q_cr`: Integer
         * `allow_local_volume`: Boolean - When using NFS volume storage, enable this to allow users to choose.
+        * `bill_offline`: Boolean - Continue billing containers when they're stopped. Volumes and backups are always billed. (default: true)
+        * `bill_suspended`: Boolean - Continue billing suspended users. (default: true)
+        * `remove_stopped`: Boolean - Remove stopped containers from the node. Persistent volumes will remain. When the user starts the container, it will be repovisioned automatically. (default: false)
 
 ## Delete User Group
 
