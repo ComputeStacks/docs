@@ -46,3 +46,25 @@
 ## Delete Location
 
 `DELETE /api/admin/locations/{id}`
+
+## Show Location Resource Allocation
+
+`GET /api/admin/locations/{location_id}/allocated_resources`
+
+??? abstract "Schema"
+    * `total`: Hash
+        * `containers`: Integer
+        * `sftp_containers`: Integer
+        * `cpu`: Float (CORES)
+        * `memory`: Integer (MB)
+    * `availability_zones`: Array
+        * `id`: Integer
+        * `name`: String
+        * `allocated`: Hash
+            * `containers`: Integer
+            * `sftp_containers`: Integer
+            * `cpu`: Float (CORES)
+            * `memory`: Integer (MB)
+        * `projects`: Array
+            * `id`: Integer
+            * `name`: String
