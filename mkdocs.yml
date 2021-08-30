@@ -112,3 +112,4 @@ nav:
     - User Management:
       - Users: 'admin_api/users/index.md'
       - Groups: 'admin_api/users/user_groups.md'
+  - Changelog: 'changelog.md'
