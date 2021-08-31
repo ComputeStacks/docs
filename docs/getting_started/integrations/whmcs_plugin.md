@@ -51,7 +51,7 @@ The ComputeStacks integration for WHMCS provides an easy onboarding experience f
 [Download Our Plugin](https://github.com/ComputeStacks/billing-whmcs/archive/master.zip) and upload the contents to your WHMCS server. The folder structure included should match your local installation. Ultimately, the `computestacks` directory under `whmcs/modules/servers/`, should be placed on your WHMCS server at `modules/servers/`.
 
 !!! abstract ""
-    The current version requires WHMCS v8+. For WHMCS v7 support, please use our [latest v2 version](https://github.com/ComputeStacks/billing-whmcs/releases){: target="_blank" }.
+    The current version requires WHMCS v8.2+. For WHMCS v7 support, please use our [latest v2 version](https://github.com/ComputeStacks/billing-whmcs/releases){: target="_blank" }.
 
 ## Configure WHMCS
 
@@ -95,6 +95,7 @@ Before we proceed, you will need to first [generate API credentials](https://doc
     * `Products -> GetProducts`
     * `Products -> UpdateClientProduct`
     * `Servers -> GetHealthStatus`
+    * `System -> WhmcsDetails`
 
 !!! danger "WHMCS Access Control"
 
