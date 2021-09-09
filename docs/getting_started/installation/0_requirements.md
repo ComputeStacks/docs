@@ -27,11 +27,11 @@ The following roles will require domain names:
 <tbody>
     <tr>
         <td><b>Controller</b></td>
-        <td>this is the main URL for the service. Examples include: `portal`, `dashboard`, or `cp`.</td>
+        <td>this is the main URL for the service. Examples include: <code>portal</code>, <code>dashboard</code>, or <code>cp</code>.</td>
     </tr>
     <tr>
         <td><b>Container Registry</b></td>
-        <td>Examples: `cr.`, or `registry.`.</td>
+        <td>Examples: <code>cr.</code>, or <code>registry.</code>.</td>
     </tr>
     <tr>
         <td><b>Metrics</b></td>
