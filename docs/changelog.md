@@ -1,5 +1,13 @@
 # Change Log
 
+## v6.3.2
+
+_Sep 8, 2021_
+
+* [FEATURE] Additional container resource limits. Open file limits, pid limits, and disk IOPS limits.
+
+***
+
 ## v6.3.0
 
 _Aug 26, 2021_
