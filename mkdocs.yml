@@ -113,4 +113,13 @@ nav:
     - User Management:
       - Users: 'admin_api/users/index.md'
       - Groups: 'admin_api/users/user_groups.md'
+  - User API:
+    - Overview: 'user_api/index.md'
+    - Collaborations:
+      - Overview: 'user_api/latest/collaborations/index.md'
+      - Images: 'user_api/latest/collaborations/images.md'
+      - Projects: 'user_api/latest/collaborations/projects.md'
+      - Registry: 'user_api/latest/collaborations/registry.md'
+      - Zones: 'user_api/latest/collaborations/zones.md'
+          
   - Changelog: 'changelog.md'
