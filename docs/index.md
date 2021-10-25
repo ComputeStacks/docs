@@ -12,7 +12,6 @@ hide:
 <br>
 
 * View our current [API Documentation](https://demo.computestacks.net/documentation/api){: target="_blank" }.
-{% include 'slack.md' %}
 * Access our free [online demo](https://demo.computestacks.net){: target="_blank" }.
     * [Schedule](https://www.computestacks.com/demo){: target="_blank" } a call for a guided demo and to see our backend interface.
 
