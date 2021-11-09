@@ -66,6 +66,8 @@ nav:
       - Rename Region: 'admin_guide/cluster_management/change_region_name.md'
       - Controller Database: 'admin_guide/cluster_management/cs_database.md'
       - Load Balancer: 'admin_guide/cluster_management/load_balancer.md'
+    - System Administration:
+      - Update Agent: 'admin_guide/sysadmin/upgrade_agent.md'
     - Custom Integrations:
       - API Only: 'admin_guide/custom_integration/full_api.md'
   - User Guide:
