@@ -122,5 +122,3 @@ nav:
       - Projects: 'user_api/latest/collaborations/projects.md'
       - Registry: 'user_api/latest/collaborations/registry.md'
       - Zones: 'user_api/latest/collaborations/zones.md'
-          
-  - Changelog: 'changelog.md'
