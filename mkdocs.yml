@@ -77,7 +77,9 @@ nav:
     - Container Images:
       - ElasticSearch: 'user_guide/container_images/elastic-search.md'
       - Redis: 'user_guide/container_images/redis.md'
-      - Wordpress: 'user_guide/container_images/wordpress.md'
+      - Wordpress: 
+          - Overview: 'user_guide/container_images/wordpress.md'
+          - Apache to LiteSpeed: 'user_guide/container_images/wordpress_apache.md'
       - WHMCS: 'user_guide/container_images/whmcs.md'
     - Core Concepts:
       - Sending Mail: 'user_guide/core-concepts/mail.md'

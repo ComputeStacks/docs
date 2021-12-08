@@ -4,12 +4,11 @@ description: Sending Mail
 ---
 # How to send mail
 
-By default, none of [our images](https://hub.docker.com/u/cmptstks){: target="_blank" } include any kind of MTA. 
+By default, most of [our images](https://hub.docker.com/u/cmptstks){: target="_blank" } do not include any kind of MTA. This means the default phpmailer, or sendmail, will not function.
 
-!!! danger ""
-    Some of our providers explicitly block port `25` on their container nodes, so even if you add an MTA to your container image, sending mail may still fail.
+However, beginning with our php7.4-based images, we now include postfix that can be configured to relay mail to your SMTP provider of choice. This means you no longer need to configure SMTP in your app, or install a wordpress plugin.
 
-In addition to the technical limitations, due to the lack of mail volume and other factors, mail sent from your container may fail to reach the intended recipient. For this reason, we advise all our customers to use a third-party SMTP service.
+You can learn more by viewing our php image on github: [github.com/ComputeStacks/cs-docker-php/tree/main/7.4-litespeed](https://github.com/ComputeStacks/cs-docker-php/tree/main/7.4-litespeed){: target="_blank" }
 
 Example SMTP services:
 

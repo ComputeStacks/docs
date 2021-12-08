@@ -14,9 +14,53 @@ The Litespeed plugin has full support for adding a Redis cache.
 
 ## Sending Mail
 
-By default, none of [our images](https://hub.docker.com/u/cmptstks){: target="_blank" } include any kind of MTA. Additionally, some of our providers explicitly block port `25` on their container nodes. 
+Beginning with our [php7.4](https://github.com/ComputeStacks/cs-docker-wordpress/tree/main/php7.4-litespeed) image, we now include a built-in MTA to allow wordpress to send mail _without any kind of additional plugin_. However, by default this is disabled.
 
-Our default wordpress image includes an smtp plugin that you may activate and use.
+To activate mail, find an SMTP provider of your choice such as Postmark, SendInBlue, Sendgrid, or Mailgun, and edit your wordpres service and add the following environmental variables: 
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Required</th>
+      <th>Value</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SMTP_SERVER</td>
+      <td>Yes</td>
+      <td>IP or Hostname of the SMTP server</td>
+      <td><pre>null</pre></td>
+    </tr>
+    <tr>
+      <td>SMTP_PASSWORD</td>
+      <td>Yes</td>
+      <td>SMTP Password</td>
+      <td><pre>null</pre></td>
+    </tr>
+    <tr>
+      <td>SMTP_USERNAME</td>
+      <td>Yes</td>
+      <td>Username</td>
+      <td><pre>null</pre></td>
+    </tr>
+    <tr>
+      <td>SMTP_PORT</td>
+      <td>Yes</td>
+      <td>smtp port</td>
+      <td><pre>null</pre></td>
+    </tr>
+    <tr>
+      <td>PM_STREAM</td>
+      <td>No</td>
+      <td>Postmark Message Stream ID</td>
+      <td><pre>null</pre></td>
+    </tr>
+  </tbody>
+</table>
+
 
 Please see our [guide to sending mail](../core-concepts/mail.md).
 
