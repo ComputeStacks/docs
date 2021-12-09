@@ -67,6 +67,7 @@ nav:
       - Controller Database: 'admin_guide/cluster_management/cs_database.md'
       - Load Balancer: 'admin_guide/cluster_management/load_balancer.md'
     - System Administration:
+      - Controller Backup: 'admin_guide/sysadmin/controller_backups.md'
       - Update Agent: 'admin_guide/sysadmin/upgrade_agent.md'
     - Custom Integrations:
       - API Only: 'admin_guide/custom_integration/full_api.md'
