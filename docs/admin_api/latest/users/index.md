@@ -10,56 +10,57 @@ description: User API
 !!! tip "Include Unprocessed Usage"
     You can optionally pass `?include=balance` to see their unprocessed usage. Unprocessed usage is the amount they have accrued that has not yet been sent to your invoice & payment system.
 
-```json
-{
-  "users": [
+??? Example "Example"
+    ```json
     {
-      "id": 1,
-      "fname": "John",
-      "lname": "Doe",
-      "email": "j@doe.com",
-      "active": true,
-      "is_admin": false,
-      "api_key": null,
-      "api_version": 0,
-      "external_id": null,
-      "currency": "USD",
-      "confirmed_at": "2020-06-09T18:51:59.142Z",
-      "confirmation_sent_at": null,
-      "last_request_at": "2020-10-15T05:49:16.258Z",
-      "last_sign_in_at": "2020-10-15T05:08:36.974Z",
-      "current_sign_in_at": "2020-10-15T05:45:55.042Z",
-      "sign_in_count": 50,
-      "reset_password_sent_at": null,
-      "locked_at": null,
-      "failed_attempts": 0,
-      "address1": null,
-      "address2": null,
-      "city": null,
-      "state": null,
-      "zip": null,
-      "country": "US",
-      "vat": null,
-      "labels": {},
-      "created_at": "2020-06-09T18:51:59.145Z",
-      "updated_at": "2020-10-15T05:49:16.139Z",
-      "security_keys": [],
-      "billing_plan": {
-        "id": 1,
-        "name": "default"
-      },
-      "user_group": {
-        "id": 1,
-        "name": "default"
-      },
-      "external_integrations": [],
-      "currency_symbol": "$",
-      "current_sign_in_ip": "127.0.0.1",
-      "last_sign_in_ip": "127.0.0.1"
+      "users": [
+        {
+          "id": 1,
+          "fname": "John",
+          "lname": "Doe",
+          "email": "j@doe.com",
+          "active": true,
+          "is_admin": false,
+          "api_key": null,
+          "api_version": 0,
+          "external_id": null,
+          "currency": "USD",
+          "confirmed_at": "2020-06-09T18:51:59.142Z",
+          "confirmation_sent_at": null,
+          "last_request_at": "2020-10-15T05:49:16.258Z",
+          "last_sign_in_at": "2020-10-15T05:08:36.974Z",
+          "current_sign_in_at": "2020-10-15T05:45:55.042Z",
+          "sign_in_count": 50,
+          "reset_password_sent_at": null,
+          "locked_at": null,
+          "failed_attempts": 0,
+          "address1": null,
+          "address2": null,
+          "city": null,
+          "state": null,
+          "zip": null,
+          "country": "US",
+          "vat": null,
+          "labels": {},
+          "created_at": "2020-06-09T18:51:59.145Z",
+          "updated_at": "2020-10-15T05:49:16.139Z",
+          "security_keys": [],
+          "billing_plan": {
+            "id": 1,
+            "name": "default"
+          },
+          "user_group": {
+            "id": 1,
+            "name": "default"
+          },
+          "external_integrations": [],
+          "currency_symbol": "$",
+          "current_sign_in_ip": "127.0.0.1",
+          "last_sign_in_ip": "127.0.0.1"
+        }
+      ]
     }
-  ]
-}
-```
+    ```
 
 ## View User
 `GET /api/admin/users/{user_id}`
@@ -108,65 +109,66 @@ In addition to querying a user by their `user_id`, you may also load a user by t
 </tbody>
 </table>
 
-```json
-{
-  "user": {
-    "id": 13,
-    "fname": "Jane",
-    "lname": "Doe",
-    "email": "jane@email.net",
-    "phone": "",
-    "active": true,
-    "is_admin": false,
-    "api_key": null,
-    "api_version": 0,
-    "external_id": "",
-    "currency": "USD",
-    "confirmed_at": "2020-10-15T05:49:07.263Z",
-    "confirmation_sent_at": null,
-    "last_request_at": "2021-03-01T23:11:08.172Z",
-    "last_sign_in_at": "2021-03-01T23:35:20.304Z",
-    "current_sign_in_at": "2021-03-01T23:35:37.264Z",
-    "sign_in_count": 102,
-    "reset_password_sent_at": null,
-    "locked_at": null,
-    "failed_attempts": 0,
-    "address1": "",
-    "address2": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "country": "US",
-    "vat": null,
-    "company_name": "",
-    "run_rate": "0.0",
-    "labels": {},
-    "created_at": "2020-10-15T05:49:07.272Z",
-    "updated_at": "2021-03-01T23:35:37.265Z",
-    "security_keys": [],
-    "billing_plan": {
-      "id": 1,
-      "name": "default"
-    },
-    "user_group": {
-      "id": 1,
-      "name": "default"
-    },
-    "external_integrations": [],
-    "currency_symbol": "$",
-    "current_sign_in_ip": "127.0.0.1",
-    "last_sign_in_ip": "127.0.0.1",
-    "services": {
-      "deployments": 1,
-      "containers": 1,
-      "container_services": 1,
-      "container_images": 0,
-      "container_registries": 0,
-      "dns_zones": 0
+??? Example "Example"
+    ```json
+    {
+      "user": {
+        "id": 13,
+        "fname": "Jane",
+        "lname": "Doe",
+        "email": "jane@email.net",
+        "phone": "",
+        "active": true,
+        "is_admin": false,
+        "api_key": null,
+        "api_version": 0,
+        "external_id": "",
+        "currency": "USD",
+        "confirmed_at": "2020-10-15T05:49:07.263Z",
+        "confirmation_sent_at": null,
+        "last_request_at": "2021-03-01T23:11:08.172Z",
+        "last_sign_in_at": "2021-03-01T23:35:20.304Z",
+        "current_sign_in_at": "2021-03-01T23:35:37.264Z",
+        "sign_in_count": 102,
+        "reset_password_sent_at": null,
+        "locked_at": null,
+        "failed_attempts": 0,
+        "address1": "",
+        "address2": "",
+        "city": "",
+        "state": "",
+        "zip": "",
+        "country": "US",
+        "vat": null,
+        "company_name": "",
+        "run_rate": "0.0",
+        "labels": {},
+        "created_at": "2020-10-15T05:49:07.272Z",
+        "updated_at": "2021-03-01T23:35:37.265Z",
+        "security_keys": [],
+        "billing_plan": {
+          "id": 1,
+          "name": "default"
+        },
+        "user_group": {
+          "id": 1,
+          "name": "default"
+        },
+        "external_integrations": [],
+        "currency_symbol": "$",
+        "current_sign_in_ip": "127.0.0.1",
+        "last_sign_in_ip": "127.0.0.1",
+        "services": {
+          "deployments": 1,
+          "containers": 1,
+          "container_services": 1,
+          "container_images": 0,
+          "container_registries": 0,
+          "dns_zones": 0
+        }
+      }
     }
-  }
-}
-```
+    ```
 
 ## Create User
 `POST /api/admin/users`
@@ -197,32 +199,33 @@ In addition to querying a user by their `user_id`, you may also load a user by t
 </tbody>
 </table>
 
-```json
-{
-  "user": {
-    "skip_email_confirm": true, # Optional, otherwise they will get an email asking them to confirm their account.
-    "external_id": "", # A field you may use for your own purposes to store a unique id
-    "fname": "", # required
-    "lname": "", # required
-    "email": "", # required. Must be unique in our system! If you skip email confirmation, it does not need to be a real email account.
-    "password": "", # required
-    "password_confirmation": "", # required
-    "address1": "",
-    "address2": "",
-    "city": "",
-    "state": "",
-    "zip": "", # postal code
-    "country": "",
-    "phone": "",
-    "user_group_id": "", # blank will use the default user group.
-    "merge_labels": [
-      {
-        "key": "value"
+??? Example "Example"
+    ```json
+    {
+      "user": {
+        "skip_email_confirm": true, # Optional, otherwise they will get an email asking them to confirm their account.
+        "external_id": "", # A field you may use for your own purposes to store a unique id
+        "fname": "", # required
+        "lname": "", # required
+        "email": "", # required. Must be unique in our system! If you skip email confirmation, it does not need to be a real email account.
+        "password": "", # required
+        "password_confirmation": "", # required
+        "address1": "",
+        "address2": "",
+        "city": "",
+        "state": "",
+        "zip": "", # postal code
+        "country": "",
+        "phone": "",
+        "user_group_id": "", # blank will use the default user group.
+        "merge_labels": [
+          {
+            "key": "value"
+          }
+        ]
       }
-    ]
-  }
-}
-```
+    }
+    ```
 
 ??? note "Additional User Fields"
 
@@ -235,7 +238,7 @@ In addition to querying a user by their `user_id`, you may also load a user by t
     `company_name`   | string  |
     `locale`         | string  | Their language in 2-digit format, examples: `en`, `fr`, `de`.
 
-??? example "Response"
+??? example "Example"
     ```json
     {
       "id": 100,

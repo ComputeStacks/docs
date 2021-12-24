@@ -93,8 +93,7 @@ nav:
       - Cloudflare: 'user_guide/third-party/cloudflare.md'
   - Admin API:
     - Overview: 'admin_api/index.md'
-    - Container Services: 'admin_api/latest/container_services/index.md'
-    - Images: 'admin_api/latest/images/index.md'
+    - Container Services: 'admin_api/latest/container_services/index.md'    
     - Billing: 
       - Overview: 'admin_api/latest/billing/index.md'
       - Products: 'admin_api/latest/billing/products.md'
@@ -102,11 +101,17 @@ nav:
       - Billing Resources: 'admin_api/latest/billing/resources.md'
       - Billing Phases: 'admin_api/latest/billing/phases.md'
       - Resource Prices: 'admin_api/latest/billing/prices.md'
+    - DNS:
+      - Overview: 'admin_api/latest/zones/index.md'
+      - Collaborations: 'admin_api/latest/zones/collaborators.md'
     - Infrastructure:
       - Overview: 'admin_api/latest/infrastructure/index.md'
       - Regions: 'admin_api/latest/infrastructure/locations.md'
       - Availability Zones: 'admin_api/latest/infrastructure/regions.md'
       - Nodes: 'admin_api/latest/infrastructure/nodes.md'
+    - Images: 
+      - Overview: 'admin_api/latest/images/index.md'
+      - Collaborations: 'admin_api/latest/images/collaborations.md'
     - Networking:
       - Domains: 'admin_api/latest/networking/domains.md'
       - Ingress Rules: 'admin_api/latest/networking/ingress_rules.md'
@@ -122,6 +127,7 @@ nav:
     - User Management:
       - Users: 'admin_api/latest/users/index.md'
       - Groups: 'admin_api/latest/users/user_groups.md'
+      - SSH Keys: 'admin_api/latest/users/ssh_keys.md'
   - User API:
     - Overview: 'user_api/index.md'
     - Collaborations:
