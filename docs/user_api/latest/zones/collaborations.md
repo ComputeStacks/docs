@@ -1,12 +1,12 @@
 ---
-title: Images
-description: Container Image Collaborator API
+title: Collaborations
+description: DNS Zone Collaborator API
 ---
-# Container Image Collaborators
+# DNS Zone Collaborator Collaborators
 
 ## List All Collaborators
 
-`GET /api/container_images/{container-image-id}/collaborators`
+`GET /api/zones/{zone-id}/collaborators`
 
 ??? abstract "Schema"
     * `collaborations`: Array
@@ -18,12 +18,12 @@ description: Container Image Collaborator API
 
 ## View Collaborator
 
-`GET /api/container_images/{container-image-id}/collaborators/{id}`
+`GET /api/zones/{zone-id}/collaborators/{id}`
 
 ??? abstract "Schema"
     * `collaboration`: Object
         * `id`: Integer
-        * `image`: Object
+        * `zone`: Object
             * `id`: Integer
             * `name`: String
     * `resource_owner`: Object
@@ -33,7 +33,7 @@ description: Container Image Collaborator API
 
 ## Create Collaborator Request
 
-`POST /api/container_images/{container-image-id}/collaborators`
+`POST /api/zones/{zone-id}/collaborators`
 
 ??? abstract "Schema"
     * `collaborator`: Object
@@ -41,4 +41,4 @@ description: Container Image Collaborator API
 
 ## Remove Collaborator
 
-`DELETE /api/container_images/{container-image-id}/collaborators/{id}`
+`DELETE /api/zones/{zone-id}/collaborators/{id}`

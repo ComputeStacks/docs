@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: Collaborations
 description: Project Collaborator API
 ---
 # Projects Collaborators
@@ -7,6 +7,8 @@ description: Project Collaborator API
 ## List All Collaborators
 
 `GET /api/projects/{project-id}/collaborators`
+
+**OAuth AuthorizationRequired**: `projects_read`
 
 ??? abstract "Schema"
     * `collaborations`: Array
@@ -19,6 +21,8 @@ description: Project Collaborator API
 ## View Collaborator
 
 `GET /api/projects/{project-id}/collaborators/{id}`
+
+**OAuth AuthorizationRequired**: `projects_read`
 
 ??? abstract "Schema"
     * `collaboration`: Object
@@ -35,6 +39,8 @@ description: Project Collaborator API
 
 `POST /api/projects/{project-id}/collaborators`
 
+**OAuth AuthorizationRequired**: `projects_write`
+
 ??? abstract "Schema"
     * `collaborator`: Object
         * `user_email`: String
@@ -42,3 +48,5 @@ description: Project Collaborator API
 ## Remove Collaborator
 
 `DELETE /api/projects/{project-id}/collaborators/{id}`
+
+**OAuth AuthorizationRequired**: `projects_write`

@@ -4,7 +4,7 @@ Description: Subscription Usage
 ---
 # Subscription Usage
 
-ComputeStacks will automatically aggregate this data at the end of the month. You may elect to receive that data as a webhook, configured under Advanced Settings in the admin. ([more info](../../getting_started/integrations/webhooks.md))
+ComputeStacks will automatically aggregate this data at the end of the month. You may elect to receive that data as a webhook, configured under Advanced Settings in the admin. 
 
 ## List Usage Items
 

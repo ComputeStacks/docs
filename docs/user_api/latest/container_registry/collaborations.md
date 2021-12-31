@@ -1,5 +1,5 @@
 ---
-title: Registry
+title: Collaborations
 description: Registry Collaborator API
 ---
 # Container Registry Collaborators
@@ -7,6 +7,8 @@ description: Registry Collaborator API
 ## List All Collaborators
 
 `GET /api/container_registry/{container-registry-id}/collaborators`
+
+**OAuth AuthorizationRequired**: `projects_read`
 
 ??? abstract "Schema"
     * `collaborations`: Array
@@ -19,6 +21,8 @@ description: Registry Collaborator API
 ## View Collaborator
 
 `GET /api/container_registry/{container-registry-id}/collaborators/{id}`
+
+**OAuth AuthorizationRequired**: `projects_read`
 
 ??? abstract "Schema"
     * `collaboration`: Object
@@ -35,6 +39,8 @@ description: Registry Collaborator API
 
 `POST /api/container_registry/{container-registry-id}/collaborators`
 
+**OAuth AuthorizationRequired**: `projects_write`
+
 ??? abstract "Schema"
     * `collaborator`: Object
         * `user_email`: String
@@ -42,3 +48,5 @@ description: Registry Collaborator API
 ## Remove Collaborator
 
 `DELETE /api/container_registry/{container-registry-id}/collaborators/{id}`
+
+**OAuth AuthorizationRequired**: `projects_write`

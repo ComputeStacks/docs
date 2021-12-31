@@ -129,10 +129,49 @@ nav:
       - Groups: 'admin_api/latest/users/user_groups.md'
       - SSH Keys: 'admin_api/latest/users/ssh_keys.md'
   - User API:
-    - Overview: 'user_api/index.md'
-    - Collaborations:
-      - Overview: 'user_api/latest/collaborations/index.md'
-      - Images: 'user_api/latest/collaborations/images.md'
-      - Projects: 'user_api/latest/collaborations/projects.md'
-      - Registry: 'user_api/latest/collaborations/registry.md'
-      - Zones: 'user_api/latest/collaborations/zones.md'
+    - Overview: 'user_api/latest/index.md'
+    - Collaborators: 'user_api/latest/collaborations/index.md'
+    - Containers: 'user_api/latest/containers/index.md'
+    - Container Registry: 
+      - Overview: 'user_api/latest/container_registry/index.md'
+      - Collaborators: 'user_api/latest/container_registry/collaborations.md'
+    - Container Services: 
+      - Overview: 'user_api/latest/container_services/index.md'
+      - Metadata: 'user_api/latest/container_services/metadata.md'
+      - Resources: 'user_api/latest/container_services/resources.md'
+      - SSL: 'user_api/latest/container_services/ssl.md'
+    - Domains: 'user_api/latest/domains/index.md'
+    - DNS: 
+      - Overview: 'user_api/latest/zones/index.md'
+      - Collaborators: 'user_api/latest/zones/collaborations.md'
+    - Events: 'user_api/latest/events/index.md'
+    - Images:
+      - Overview: 'user_api/latest/images/index.md'
+      - Collaborators: 'user_api/latest/images/collaborations.md'
+      - Providers: 'user_api/latest/images/providers.md'
+      - Parameters:
+        - Env: 'user_api/latest/images/params/env.md'
+        - Ingress: 'user_api/latest/images/params/ingress.md'
+        - Relationships: 'user_api/latest/images/params/relationships.md'
+        - Settings: 'user_api/latest/images/params/settings.md'
+        - Volumes: 'user_api/latest/images/params/volumes.md'
+    - Load Balancers: 'user_api/latest/load_balancers/index.md'
+    - Locations: 'user_api/latest/locations/index.md'
+    - Networks:
+      - Ingress Rules: 'user_api/latest/network/index.md'
+    - Orders: 'user_api/latest/orders/index.md'
+    - Products: 'user_api/latest/products/index.md'
+    - Profile: 
+      - Overview: 'user_api/latest/user/index.md'
+      - SSH Keys: 'user_api/latest/user/ssh.md'
+    - Projects: 
+      - Overview: 'user_api/latest/projects/index.md'
+      - Collaborators: 'user_api/latest/projects/collaborations.md'
+      - Resources: 'user_api/latest/projects/resources.md'
+    - Subscriptions: 
+      - Overview: 'user_api/latest/subscriptions/index.md'
+      - Billing Events: 'user_api/latest/subscriptions/billing_events.md'
+      - Usage: 'user_api/latest/subscriptions/usage.md'
+    - Volumes: 
+      - Overview: 'user_api/latest/volumes/index.md'
+      - Backups: 'user_api/latest/volumes/backup.md'
