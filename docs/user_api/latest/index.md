@@ -4,11 +4,6 @@ description: Latest API Version
 ---
 # End-User API Documentation
 
-When building your custom integration, you will need acquire the user's API credentials in order to perform most API actions. There are two ways to do this:
-
-1. Store API credentials for the user locally in your application
-2. Use OAuth to gain temporary access only when the user specifically approves it _(recommended)_.
-
 ---
 
 !!! note "A note about types"
