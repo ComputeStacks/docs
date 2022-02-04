@@ -126,6 +126,7 @@
         * `name`: String
         * `scale`: Integer
         * `package_id`: Integer
+        * `master_domain_id`: Integer | ID of domain that you want to be default.
 
 
 ## Delete a container service
