@@ -8,11 +8,6 @@ Before proceeding, we recommend you first review our [Architecture Overview](../
 
 Our installation process requires [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html){: target="_blank" } to be installed either locally on your computer, or remotely on a linux machine. Please ensure this has been setup prior to continuing with this installation process.
 
-## License Key
-
-You may purchase, or request a free demo license key, here: [computestacks.com/pricing](https://www.computestacks.com/pricing){: target="_blank" }
-
-
 ## Supported Linux Distribution
 
 Our supported linux distribution is **Debian 11 Bullseye**.
@@ -54,6 +49,12 @@ b.fra.example.net <-- Region FRA, Availability Zone 2
             </pre>
         </td>
     </tr>
+    <tr>
+        <td><b>PowerDNS</b></td>
+        <td>
+            <code>ns1/ns2</code>
+        </td>
+    </tr>
 </tbody>
 </table>
 
@@ -66,17 +67,6 @@ b.fra.example.net <-- Region FRA, Availability Zone 2
     portal.dev.cmptstks.net. IN A %{controller ip address}
     cr.dev.cmptstks.net. IN CNAME portal.dev.cmptstks.net.
     ```
-
-## Choosing a DNS Server
-
-We require a DNS integration for our platform; there are two supported options:
-
-1. Use our free hosted DNS service, or; 
-2. Host your own PowerDNS servers.
-
-
-!!! danger ""
-    During installation, the default will be to use a shared demo account. Please contact us for your hosted dns credentials, or for help setting up your own PowerDNS cluster.
 
 ## Linux Users and Groups
 

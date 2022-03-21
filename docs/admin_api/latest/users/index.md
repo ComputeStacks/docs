@@ -174,7 +174,7 @@ In addition to querying a user by their `user_id`, you may also load a user by t
 `POST /api/admin/users`
 
 !!! tip ""
-    We also have a non-admin [endpoint](https://demo.computestacks.net/documentation/api#operation/User-create){: target="_blank" } for creating users. This is currently quite specific for our cPanel integration and requires oauth to authenticate. We recommend using this method for creating users.
+    We also have a non-admin [endpoint](https://demo.computestacks.net/documentation/api#operation/User-create){: target="_blank" } for creating users.
 
 <table>
 <tbody>

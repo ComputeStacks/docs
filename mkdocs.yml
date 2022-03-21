@@ -51,7 +51,6 @@ nav:
       - Run: 'getting_started/installation/2_perform.md'
       - Finalize: 'getting_started/installation/3_finalize.md'
     - Integrations:
-      - cPanel: 'getting_started/integrations/cpanel_plugin.md'
       - WebHooks: 'getting_started/integrations/webhooks.md'
       - WHMCS: 'getting_started/integrations/whmcs_plugin.md'
   - Admin Guide:

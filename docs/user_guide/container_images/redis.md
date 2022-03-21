@@ -12,7 +12,6 @@ Within the ComputeStacks environment, the default configuration makes a few opin
 * In-memory only, no disk snapshots
 * Password protected
 * TLS encryption when connecting to redis externally _(outside the project)_
-  * The most common use case for this is when using our cPanel integration and you want to add redis to a site hosted on cpanel.
 
     !!! danger ""
         In order to use TLS with PHP, you must be using php `v7.2+`, and [phpredis](https://github.com/phpredis/phpredis){: target="_blank" } `v5.0+`.
@@ -40,11 +39,6 @@ If you don't have a public port, or the protocol does not say `tls`, you will wa
 
 ![Redis Ingress Rule](/images/content/container-images/redis/redis-ingress-rule.png)
 
-
-##### cPanel Example
-
-![Redis Service Overview](/images/content/container-images/redis/ei-redis-service-overview.png)
-
 #### Connecting Your Application
 
 In your application, you will want to use the following URL in your app: `tls://<my-domain>`. If your application requires the port be included in the URI string, then you can add `:<public-port>` to that.
@@ -66,9 +60,6 @@ You will also want to add the redis password provided by ComputeStacks.
     ```
 
 ## Video Demos
-
-??? info "(VIDEO) Adding Redis to cPanel"
-    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/AwuC6M4rl1o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ??? info "(VIDEO) Adding Redis to Wordpress"
     <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tQ_qll_gntc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

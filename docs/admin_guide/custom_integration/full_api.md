@@ -166,8 +166,7 @@ This will return
     "id": "f5a34c0f-e9e2-45e0-9bba-d342d12517fc",
     "redirect_url": null, # not applicable for you
 
-    # This will be the public IP of the LB. We use this in our cPanel integration to
-    # set the A record for the domain hosted by cPanel, while the project is being provisioned.
+    # This will be the public IP of the LB.
     "load_balancer_ip": "192.168.1.10"
   }
 }

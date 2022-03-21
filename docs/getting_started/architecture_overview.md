@@ -4,7 +4,7 @@ description: Architecture Overview
 ---
 # Architecture
 
-ComputeStacks is a collection of open-source & commercial software, running in a clustered environment. This guide will walk through some of the key components to help you make an informed decision when planning your environment.
+ComputeStacks is a collection of open-source software, running in a clustered environment. This guide will walk through some of the key components to help you make an informed decision when planning your environment.
 
 All servers will use Debian 11.
 
@@ -68,7 +68,7 @@ As part of our normal installation process, we will configure a dedicated metric
 
 ### DNS
 
-ComputeStacks offers an optional DNS interface. You may choose to use our hosted DNS service for free, or deploy your own PowerDNS service. The default ansible installer will connect to our shared demo DNS service. Please do not use this in production!
+ComputeStacks offers an optional DNS interface. You may choose to use our hosted DNS service for free, or deploy your own PowerDNS service. Our ansible installer can provision a replicated PowerDNS setup automatically.
 
 ## Example Configurations
 
@@ -91,6 +91,8 @@ For small hosting providers who are just getting started. This setup will typica
     Controller     | 4 Cores | 8 GB   | 50 GB   | Single public IP address
     Container Node | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
     Backup Server  | 1 Core  | 1 GB   | 100 GB  | 1 public, 1 private
+    PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
+    PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
 
 
 !!! tip "All of our cluster examples will require:"
@@ -115,6 +117,9 @@ For small hosting providers who are just getting started. This setup will typica
     Container Node 3 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
     Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
     Metrics          | 2 Cores | 4 GB   | 35 GB   | 1 public, 1 private
+    PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
+    PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
+    
 
 ### Medium Cluster
 
@@ -130,6 +135,8 @@ For small hosting providers who are just getting started. This setup will typica
     Container Node 3 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Backup Server    | 1 Core   | 1 GB   | 150 GB  | 1 public, 1 private
     Metrics          | 4 Cores  | 8 GB   | 35 GB   | 1 public, 1 private
+    PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
+    PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
 
 ### Multi-Region Cluster
 
@@ -139,6 +146,8 @@ For small hosting providers who are just getting started. This setup will typica
     -------------------|---------|--------|---------|-------------------------
     Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
+    PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
+    PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
 
 !!! example "Region 1"
 
@@ -177,7 +186,9 @@ For small hosting providers who are just getting started. This setup will typica
     Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
     Backup Server      | 1 Core  | 1 GB   | 350 GB  | 1 public, 1 private
-    Metrics            | 4 Cores | 8 GB   | 50 GB   | 1 public, 1 private 
+    Metrics            | 4 Cores | 8 GB   | 50 GB   | 1 public, 1 private
+    PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
+    PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
 
 !!! example "Region 1, AZ 1"
     Server Role      | CPU     | Memory | Storage | Network Notes
