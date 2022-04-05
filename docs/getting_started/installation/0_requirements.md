@@ -120,7 +120,7 @@ Here are our minimum requirements. If you plan to have customers in your environ
 Name           | CPU     | Memory | Disk
 ---------------|---------|--------|------
 Controller     | 4 Cores | 8 GB   | 50 GB
-Container Node | 4 Cores | 8 GB   | 50 GB
+Container Node | 4 Cores | 8 GB   | 100 GB
 
 If you plan to use the default PowerDNS Servers, you will also need:
 

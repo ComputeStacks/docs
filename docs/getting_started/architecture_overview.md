@@ -88,9 +88,9 @@ For small hosting providers who are just getting started. This setup will typica
 
     Server Role    | CPU     | Memory | Storage | Network Notes
     ---------------|---------|--------|---------|-------------------------
-    Controller     | 4 Cores | 8 GB   | 50 GB   | Single public IP address
-    Container Node | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
-    Backup Server  | 1 Core  | 1 GB   | 100 GB  | 1 public, 1 private
+    Controller     | 4 Cores | 8 GB   | 100 GB   | Single public IP address
+    Container Node | 4 Cores | 12 GB  | 150 GB  | 1 public, 1 private
+    Backup Server  | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
     PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
     PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
 
@@ -111,12 +111,12 @@ For small hosting providers who are just getting started. This setup will typica
 
     Server Role      | CPU     | Memory | Storage | Network Notes
     -----------------|---------|--------|---------|-------------------------
-    Controller       | 4 Cores | 8 GB   | 50 GB   | Single public IP address
-    Container Node 1 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
-    Container Node 2 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
-    Container Node 3 | 4 Cores | 12 GB  | 100 GB  | 1 public, 1 private
+    Controller       | 4 Cores | 8 GB   | 100 GB   | Single public IP address
+    Container Node 1 | 4 Cores | 12 GB  | 150 GB  | 1 public, 1 private
+    Container Node 2 | 4 Cores | 12 GB  | 150 GB  | 1 public, 1 private
+    Container Node 3 | 4 Cores | 12 GB  | 150 GB  | 1 public, 1 private
     Backup Server    | 1 Core  | 1 GB   | 150 GB  | 1 public, 1 private
-    Metrics          | 2 Cores | 4 GB   | 35 GB   | 1 public, 1 private
+    Metrics          | 2 Cores | 4 GB   | 50 GB   | 1 public, 1 private
     PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
     PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
     
@@ -129,12 +129,12 @@ For small hosting providers who are just getting started. This setup will typica
 
     Server Role      | CPU      | Memory | Storage | Network Notes
     -----------------|----------|--------|---------|-------------------------
-    Controller       | 4 Cores  | 10 GB  | 50 GB   | Single public IP address
+    Controller       | 4 Cores  | 10 GB  | 100 GB   | Single public IP address
     Container Node 1 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Container Node 2 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Container Node 3 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Backup Server    | 1 Core   | 1 GB   | 150 GB  | 1 public, 1 private
-    Metrics          | 4 Cores  | 8 GB   | 35 GB   | 1 public, 1 private
+    Metrics          | 4 Cores  | 8 GB   | 50 GB   | 1 public, 1 private
     PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
     PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
 
@@ -144,7 +144,7 @@ For small hosting providers who are just getting started. This setup will typica
 
     Server Role        | CPU     | Memory | Storage | Network Notes
     -------------------|---------|--------|---------|-------------------------
-    Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
+    Controller         | 6 Cores | 12 GB  | 100 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
     PowerDNS 1     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
     PowerDNS 2     | 1 Core  | 1 GB   | 20 GB   | 1 public, 1 private
@@ -159,7 +159,7 @@ For small hosting providers who are just getting started. This setup will typica
     Container Node 2 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Container Node 3 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Backup Server    | 1 Core   | 1 GB   | 150 GB  | 1 public, 1 private
-    Metrics          | 4 Cores  | 8 GB   | 35 GB   | 1 public, 1 private
+    Metrics          | 4 Cores  | 8 GB   | 50 GB   | 1 public, 1 private
 
 !!! example "Region 2"
 
@@ -171,7 +171,7 @@ For small hosting providers who are just getting started. This setup will typica
     Container Node 5 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Container Node 6 | 12 Cores | 48 GB  | 150 GB  | 1 public, 1 private
     Backup Server    | 1 Core   | 1 GB   | 150 GB  | 1 public, 1 private
-    Metrics          | 4 Cores  | 8 GB   | 35 GB   | 1 public, 1 private
+    Metrics          | 4 Cores  | 8 GB   | 50 GB   | 1 public, 1 private
 
 ### Single Region, Multi-AZ
 
@@ -183,7 +183,7 @@ For small hosting providers who are just getting started. This setup will typica
 !!! abstract "Shared Resources"
     Server Role        | CPU     | Memory | Storage | Network Notes
     -------------------|---------|--------|---------|---------------------------------------------------------
-    Controller         | 6 Cores | 12 GB  | 50 GB   | Single public IP address
+    Controller         | 6 Cores | 12 GB  | 100 GB   | Single public IP address
     Container Registry | 2 Cores | 2 GB   | 350 GB  | Single public IP
     Backup Server      | 1 Core  | 1 GB   | 350 GB  | 1 public, 1 private
     Metrics            | 4 Cores | 8 GB   | 50 GB   | 1 public, 1 private
