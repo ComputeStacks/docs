@@ -122,6 +122,69 @@ Name           | CPU     | Memory | Disk
 Controller     | 4 Cores | 8 GB   | 50 GB
 Container Node | 4 Cores | 8 GB   | 50 GB
 
+If you plan to use the default PowerDNS Servers, you will also need:
+
+Name | CPU | Memory | Disk
+--|--|--|--
+NS1 | 1 Core | 512 MB | 15 GB
+NS2 | 1 Core | 512 MB | 15 GB
+
+## DNS Server Requirements
+
+### AutoDNS
+
+_Coming Soon!_
+
+### PowerDNS
+
+As part of the ansible installer, we will automatically provision two powerdns nameservers using Postgresql streaming replication. If you wish to use your own powerdns server, please adjust your `inventory.yml` file and add the following under the `controller` host:
+
+```yaml
+controller:
+  hosts:
+    # ... existing parameters ...
+    pdns_skip_provisioning: true
+    pdns_endpoint: "http://ns1.example.com:8081/api/v1/servers"
+    pdns_api_key: "" # PowerDNS API Key
+    pdns_web_key: "" # WebServer Password
+    pdns_nslist:
+        - "ns1.example.com"
+        - "ns2.example.com"
+    pdns_zone_type: Native
+    pdns_masters: [] # Leave empty for Native replication
+```
+
+You would then ommit the nameserver hosts from your inventory file. It should look like this:
+
+```yaml
+primary_nameserver:
+  hosts:
+follower_nameservers:
+  hosts:
+```
+
+??? example "Example PowerDNS Configuration File"
+    ```ini
+    api=yes
+    api-key=CHANGEME # pwgen -s 32 1
+    webserver=yes
+    webserver-address=0.0.0.0
+    webserver-port=8081
+    webserver-allow-from=0.0.0.0/0
+    webserver-password=CHANGEME # pwgen -s 32 1
+    local-port=53
+    local-address=0.0.0.0, ::
+    include-dir=/etc/powerdns/pdns.d
+    launch=gpgsql
+    config-dir=/etc/powerdns
+    default-soa-edit=inception-increment
+    default-ttl=14400
+    default-soa-content=ns1.example.com hostmaster.@ 0 10800 3600 604800 3600
+    query-cache-ttl=20
+    dnsupdate=yes
+    allow-dnsupdate-from=
+    ```
+
 
 ---
 Next Step: [Preparing Installation Resources](1_prepare.md)

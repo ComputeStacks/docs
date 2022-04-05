@@ -1,5 +1,97 @@
 # Change Log
 
+## v7.1.1
+
+_Mar 29, 2022_
+
+* [FIX] Resolve issue with orphanied collaboration records.
+
+***
+
+## v7.1.0
+
+_Mar 21, 2022_
+
+* [FEATURE] Wordpress Integration Beta
+
+***
+
+## v7.0.2
+
+_Feb 16, 2022_
+
+* [FEATURE] Allow default domain to be set via the API.
+* [CHANGE] Remove last part of existing metdata api (phpMyAdmin moved to new metadata service).
+* [FIX] Bug fixes with our vagrant image.
+
+***
+
+## v7.0.1
+
+* [FEATURE] Brand new vagrant image to aid in development.
+* [CHANGE] Allow containers within a project to be linked by role, rather than a specific version.
+* [FIX] Rollback libravatar service to gravatar due to performance issues.
+
+***
+
+## v7.0.0
+
+_Jan 1, 2022_
+
+* [CHANGE] License changed to AGPL.
+* [FEATURE] SSH Keys for SFTP Containers and configurable password authentication.
+* [FEATURE] Download connection profiles for Filezilla and Transmit.
+* [FEATURE] Switch from gravatar to libravatar.
+* [FEATURE] Set a global motd for all sftp containers. (Admin)
+* [FEATURE] Moved metadata service to distributed database within each availability zone.
+* [FEATURE] Improvements to global search. (Admin)
+* [CHANGE] Allow udp and tcp to share the same port
+* [CHANGE] Provide feedback on how a user can change their profile pic
+* [CHANGE] Show user profile pics in admin
+
+***
+
+## v6.4.3
+
+_November 12, 2021_
+
+* [FIX] Fixed regression in bandwidth billing calculation.
+
+***
+
+## v6.4.2
+
+_November 8, 2021_
+
+* [FIX] Containers with no volumes would fail to migrate with nfs storage.
+
+***
+
+## v6.4.1
+
+_October 27, 2021_
+
+* [CHANGE] Collaborators can no longer delete the parent resource.
+* [FIX] A resource could no longer be deleted if it had collaborators.
+
+***
+
+## v6.4.0
+
+_October 20, 2021_
+
+* [FEATURE] Project collaborators.
+
+***
+
+## v6.3.3
+
+_Sep 21, 2021_
+
+* [FEATURE] Search by private IP of container.
+
+***
+
 ## v6.3.2
 
 _Sep 8, 2021_
