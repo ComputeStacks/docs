@@ -36,7 +36,7 @@ The ComputeStacks integration for WHMCS provides an easy onboarding experience f
     5. (user) User navigates to new service in WHMCS
     6. (user) User clicks "Launch Control Panel"
     7. (system) SSO happens and user is taken to order screen inside of ComputeStacks
-    8. (user) User places first order
+    8. (user) User places first order within ComputeStacks.
 
 === "Processing Billing"
 
