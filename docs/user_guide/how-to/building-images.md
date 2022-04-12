@@ -42,7 +42,7 @@ When building multi-container services, you can leverage our [Metadata service](
 
 Here are some great external resources to review:
 
-* [ComputeStacks docker image library](https://github.com/ComputeStacks/docker){: target="_blank" }
+* [ComputeStacks docker image library](https://git.cmptstks.com/cs-public/images){: target="_blank" }
 * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: target="_blank" }
 * [Bitnami docker images](https://bitnami.com/stacks/containers){: target="_blank" }
 
@@ -71,7 +71,7 @@ Here are some great external resources to review:
 ??? info "Don't hardcode configuration"
     Do not hard code any database credentials, or other configuration that requires up front knowledge of the environment. Instead, make all the options configurable as `ENV` variables that are accessible to an `entrypoint` script that can configure your application at run time. 
 
-    See our [Wordpress image](https://github.com/ComputeStacks/docker/blob/master/wordpress/php7.3-litespeed/10-wordpress.sh){: target="_blank" } as an example.
+    See our [Wordpress image](https://git.cmptstks.com/cs-public/images/wordpress/-/blob/main/php7.4-litespeed/51-wordpress.sh){: target="_blank" } as an example.
 
     Our `entrypoint` script takes the database settings from the environment, and configures the wordpress database settings.
 
@@ -166,6 +166,6 @@ This tells ComputeStacks how to route traffic to your container.
 
 Any data changed or created by your container can be lost at any time, so it's important create volumes to persist your data. In addition to defining your volumes, you may also configure our integrated backup tool. ([learn more](../backups.md))
 
-We recommend only 1 volume per container, however we recognize that sometimes that is not feasible. For example, we use 2 volumes in our [OpenLiteSpeed based images](https://github.com/ComputeStacks/docker/master/tree/php/open-litespeed){: target="_blank" }.
+We recommend only 1 volume per container, however we recognize that sometimes that is not feasible. For example, we use 2 volumes in our [OpenLiteSpeed based images](https://git.cmptstks.com/cs-public/images/php/-/tree/main/7.4-litespeed){: target="_blank" }.
 
 The primary reason we recommend using a single volume is to ensure that when backups are performed, they're getting a consistent point in time snapshot of your data.

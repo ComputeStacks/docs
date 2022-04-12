@@ -8,7 +8,7 @@ By default, most of [our images](https://hub.docker.com/u/cmptstks){: target="_b
 
 However, beginning with our php7.4-based images, we now include postfix that can be configured to relay mail to your SMTP provider of choice. This means you no longer need to configure SMTP in your app, or install a wordpress plugin.
 
-You can learn more by viewing our php image on github: [github.com/ComputeStacks/cs-docker-php/tree/main/7.4-litespeed](https://github.com/ComputeStacks/cs-docker-php/tree/main/7.4-litespeed){: target="_blank" }
+You can learn more by viewing our php image on github: [git.cmptstks.com/cs-public/images/php/-/tree/main/7.4-litespeed](https://git.cmptstks.com/cs-public/images/php/-/tree/main/7.4-litespeed){: target="_blank" }
 
 Example SMTP services:
 

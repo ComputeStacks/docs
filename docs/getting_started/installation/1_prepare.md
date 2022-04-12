@@ -4,7 +4,7 @@ description: Prepare Installation Resources
 ---
 # Prepare Installation Resources 
 
-If you will be deploying to a cloud provider, please first check to see if we have a [terraform package](https://github.com/ComputeStacks?q=terraform&type=&language=){: target="_blank" } for your provider. This will aid you in ensuring certain required steps are performed first.
+If you will be deploying to a cloud provider, please first check to see if we have a [terraform package](https://git.cmptstks.com/cs-public/ops?filter=terraform){: target="_blank" } for your provider. This will aid you in ensuring certain required steps are performed first.
 
 ## Setup Ansible
 
@@ -35,12 +35,22 @@ Please see the [ansible installation guide](https://docs.ansible.com/ansible/lat
 
 ### Download our Ansible Package
 
+1. Download latest zip from [git.cmptstks.com/cs-public/ops/ansible-install](https://git.cmptstks.com/cs-public/ops/ansible-install/-/releases/permalink/latest){: target="_blank" }
+2. Decompress and open directory
+
 ```bash
-git clone https://github.com/ComputeStacks/ansible-install computestacks-installer
-cd computestacks-installer
 mv inventory.yml.sample inventory.yml
 ansible-galaxy install -r requirements.yml
 ```
+
+??? example "Install via GIT"
+    ```bash
+    git clone https://git.cmptstks.com/cs-public/ops/ansible-install.git computestacks-installer
+    git checkout $(git describe --abbrev=0) # Checkout latest stable release via https://git.cmptstks.com/cs-public/ops/ansible-install/-/releases
+    cd computestacks-installer
+    mv inventory.yml.sample inventory.yml
+    ansible-galaxy install -r requirements.yml
+    ```
 
 !!! tip ""
     If you used our terraform providers, you can skip the `mv inventory.yml.sample inventory.yml` command and copy the `result/inventory.yml` file to the root of this directory.
