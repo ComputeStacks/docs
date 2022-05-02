@@ -61,10 +61,11 @@ nav:
       - Setup Free Trials: 'admin_guide/billing/free_trial.md'
       - Handle Invoicing & Payments: 'admin_guide/billing/integrations.md'
     - Cluster Management:
-      - Resource Management: 'admin_guide/cluster_management/resource_management.md'
-      - Rename Region: 'admin_guide/cluster_management/change_region_name.md'
+      - Change Node IP: 'admin_guide/cluster_management/change_node_ip.md'
       - Controller Database: 'admin_guide/cluster_management/cs_database.md'
       - Load Balancer: 'admin_guide/cluster_management/load_balancer.md'
+      - Resource Management: 'admin_guide/cluster_management/resource_management.md'
+      - Rename Region: 'admin_guide/cluster_management/change_region_name.md'
     - System Administration:
       - Controller Backup: 'admin_guide/sysadmin/controller_backups.md'
       - Update Agent: 'admin_guide/sysadmin/upgrade_agent.md'
