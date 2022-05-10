@@ -59,7 +59,7 @@ Authorization URL | `/api/oauth/authorize`
 
 ## Pagination
 
-All collection requests will be paginated using the headers `Per-Page` and `Total`. To set these values in your request, pass the URL params `page=` and `per-page=`.
+All collection requests will be paginated using the headers `Per-Page` and `Total`. To set these values in your request, pass the URL params `page=` and `per_page=`.
 
 ## Versioning
 
