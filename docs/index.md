@@ -27,8 +27,8 @@ hide:
 
     We will be connecting from the following IP Addresses:
     
-    * `192.155.86.87`
-    * `2600:3c01::f03c:92ff:feaa:fc7e`
+    * `135.148.13.168`
+    * `2604:2dc0:100:4bdb::4`
 
     ```
     ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDl6+KP0+AK14bBdS0s+hIey/Jg7l9ijNSTrIn/99lA+ CS-support
