@@ -133,7 +133,29 @@ NS2 | 1 Core | 512 MB | 15 GB
 
 ### AutoDNS
 
-_Coming Soon!_
+Our default installation is to provision two powerdns services in active passive. We also support directly integrating with AutoDNS, which would allow you to skip provisioning the two powerdns naem servers. In order to configure that, please add the following to the `controller` section of the inventory file:
+
+```yaml
+controller:
+  hosts:
+    # ... existing parameters ...
+    dns_driver: autodns
+    autodns_endpoint: "gateway.autodns.com" # https://{{ endpoint }} <-- should not be changed.
+    autodns_username: ""
+    autodns_password: ""
+    autodns_context: "4" # The default for AutoDNS is `4`; please only change if necessary.
+    autodns_nameservers: # You can omit this section if you will use the default `a/b/c/d.ns14.net` servers.
+      - a.ns14.net
+      - b.ns14.net
+      - c.ns14.net
+      - d.ns14.net
+    autodns_master_ns: a.ns14.net # Generally the first in the list of nameservers.
+    autodns_ns_ttl: 86400
+    autodns_soa_email: 'dns@example.org'
+    autodns_soa_level: 2
+```
+
+We suggest creating a dedicated AutoDNS user with limited permissions to just create and manage their own zone files, and withuot two-factor authentication. We also recommend enabling IP access restriction for that user to just the controller's public IP.
 
 ### PowerDNS
 
