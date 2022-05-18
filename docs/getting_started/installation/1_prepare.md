@@ -46,8 +46,8 @@ ansible-galaxy install -r requirements.yml
 ??? example "Install via GIT"
     ```bash
     git clone https://git.cmptstks.com/cs-public/ops/ansible-install.git computestacks-installer
-    git checkout $(git describe --abbrev=0) # Checkout latest stable release via https://git.cmptstks.com/cs-public/ops/ansible-install/-/releases
     cd computestacks-installer
+    git checkout $(git describe --abbrev=0) # Checkout latest stable release via https://git.cmptstks.com/cs-public/ops/ansible-install/-/releases
     mv inventory.yml.sample inventory.yml
     ansible-galaxy install -r requirements.yml
     ```
@@ -78,7 +78,7 @@ The reason these are critical are two fold:
 
 a) When metrics are stored for containers or nodes, the hostname is added as a label. This is how ComputeStacks is able to filter metrics for the correct container/node. 
 
-b) Backup jobs are assigned to the node by their hostname. If there is a mismatch in the controller, then jobs will not run.`
+b) Backup jobs are assigned to the node by their hostname. If there is a mismatch in the controller, then jobs will not run.
 
 ### Base Packages
 
