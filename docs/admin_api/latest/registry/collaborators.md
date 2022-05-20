@@ -11,7 +11,7 @@ description: Registry Collaborator API
 ??? abstract "Schema"
     * `collaborations`: Array
         * `id`: Integer
-        * `resource_owner`: Object
+        * `collaborator`: Object
             * `id`: Integer
             * `email`: String
             * `full_name`: String
@@ -26,6 +26,10 @@ description: Registry Collaborator API
         * `registry`: Object
             * `id`: Integer
             * `name`: String
+    * `collaborator`: Object
+        * `id`: Integer
+        * `email`: String
+        * `full_name`: String
     * `resource_owner`: Object
         * `id`: Integer
         * `email`: String
