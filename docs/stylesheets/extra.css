@@ -1,0 +1,36 @@
+/* ------------------------------------------------------------------------- *
+ * ComputeStacks docs — brand color tuning for the Zensical "modern" theme.
+ *
+ * Overrides documented `--md-*` custom properties (the SUPPORTED customization
+ * layer, loaded after the theme CSS). The ComputeStacks brand blue (#008fd5,
+ * the accent disk in the stacked-disk logo) is not a Zensical named color, so
+ * the palette uses `primary/accent = "custom"` and we set the real values here.
+ * ------------------------------------------------------------------------- */
+
+:root {
+  --md-primary-fg-color:        #008fd5;
+  --md-primary-fg-color--light: #33a6de;
+  --md-primary-fg-color--dark:  #0072ab;
+  --md-accent-fg-color:         #0072ab;
+  /* Foreground shown ON the primary (header text + logo): white for contrast. */
+  --md-primary-bg-color:        #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+}
+
+/* Links pick up the brand blue in both schemes. */
+[data-md-color-scheme="default"] {
+  --md-typeset-a-color: #0072ab;
+}
+
+/* Dark mode (slate): a lighter dark-gray background than the modern default
+   (a near-black hsl 5% lightness). Page = rgb(30, 33, 41); elevated surfaces
+   (code blocks, cards, admonitions) step progressively lighter. Keep the brand
+   blue readable on dark by lightening links + accent. */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color:           rgb(30, 33, 41);
+  --md-default-bg-color--light:    rgb(37, 41, 50);
+  --md-default-bg-color--lighter:  rgb(45, 50, 61);
+  --md-default-bg-color--lightest: rgb(55, 61, 74);
+  --md-accent-fg-color:            #33a6de;
+  --md-typeset-a-color:            #4db4e6;
+}

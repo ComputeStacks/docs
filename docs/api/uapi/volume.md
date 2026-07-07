@@ -1,0 +1,142 @@
+# Volume
+
+## List all volumes
+
+`GET /api/volumes`
+
+**OAuth authorization required**: `projects_read`
+
+??? abstract "Schema"
+    - `volumes`: Array
+        - `id`: Integer
+        - `name`: String
+        - `label`: String
+        - `region_id`: Integer
+        - `to_trash`: Boolean
+        - `trash_after`: DateTime
+        - `size`: Decimal
+        - `usage`: Decimal
+        - `usage_checked`: DateTime
+        - `trashed_by_id`: Integer
+        - `detached_at`: DateTime
+        - `subscription_id`: Integer
+        - `enable_sftp`: Boolean
+        - `borg_enabled`: Boolean
+        - `borg_freq`: String
+        - `borg_strategy`: `String<file,mysql>`
+        - `borg_keep_hourly`: Integer
+        - `borg_keep_daily`: Integer
+        - `borg_keep_weekly`: Integer
+        - `borg_keep_monthly`: Integer
+        - `borg_keep_annually`: Integer
+        - `borg_pre_backup`: `Array<String>`
+        - `borg_post_backup`: `Array<String>`
+        - `borg_pre_restore`: `Array<String>`
+        - `borg_post_restore`: `Array<String>`
+        - `borg_rollback`: `Array<String>`
+        - `updated_at`: DateTime
+        - `created_at`: DateTime
+        - `volume_maps`: Array
+            - `id`: Integer
+            - `mount_ro`: Bool | Mount read only
+            - `mount_path`: String
+            - `container_service`: Object
+                - `id`: Integer
+                - `csrn`: String
+                - `name`: String
+                - `label`: String
+        - `template`: Object
+            - `id`: Integer
+            - `csrn`: String
+            - `container_image`: Object
+                - `id`: Integer
+                - `csrn`: String
+                - `label`: String
+
+## View Volume
+
+`GET /api/volumes/{id}`
+
+**OAuth authorization required**: `projects_read`
+
+??? abstract "Schema"
+    - `volume`: Object
+        - `id`: Integer
+        - `name`: String
+        - `label`: String
+        - `region_id`: Integer
+        - `to_trash`: Boolean
+        - `trash_after`: DateTime
+        - `size`: Decimal
+        - `usage`: Decimal
+        - `usage_checked`: DateTime
+        - `trashed_by_id`: Integer
+        - `detached_at`: DateTime
+        - `subscription_id`: Integer
+        - `enable_sftp`: Boolean
+        - `borg_enabled`: Boolean
+        - `borg_freq`: String
+        - `borg_strategy`: `String<file,mysql>`
+        - `borg_keep_hourly`: Integer
+        - `borg_keep_daily`: Integer
+        - `borg_keep_weekly`: Integer
+        - `borg_keep_monthly`: Integer
+        - `borg_keep_annually`: Integer
+        - `borg_pre_backup`: `Array<String>`
+        - `borg_post_backup`: `Array<String>`
+        - `borg_pre_restore`: `Array<String>`
+        - `borg_post_restore`: `Array<String>`
+        - `borg_rollback`: `Array<String>`
+        - `updated_at`: DateTime
+        - `created_at`: DateTime
+        - `volume_maps`: Array
+            - `id`: Integer
+            - `mount_ro`: Bool | Mount read only
+            - `mount_path`: String
+            - `container_service`: Object
+                - `id`: Integer
+                - `csrn`: String
+                - `name`: String
+                - `label`: String
+        - `template`: Object
+            - `id`: Integer
+            - `csrn`: String
+            - `container_image`: Object
+                - `id`: Integer
+                - `csrn`: String
+                - `label`: String
+
+---
+
+## List all backups
+
+`GET /api/volumes/{volume-id}/backups`
+
+**OAuth authorization required**: `projects_read`
+
+**Schema**
+
+- `name`: String
+- `usage`: Integer | Size on disk (deduplicated)
+- `size`: Integer | Expanded total size
+- `archives`: `Array<String>`
+
+## Create a backup
+
+`POST /volumes/{volume-id}/backups`
+
+**OAuth authorization required**: `projects_write`
+
+**Schema**
+
+- `name`: String | Name of backup. Must be at least 3 characters long, and should not include spaces.
+
+## Restore a backup
+
+`POST /volumes/{volume-id}/restore`
+
+**OAuth authorization required**: `projects_write`
+
+**Schema**
+
+- `name`: String | Name of backup to restore

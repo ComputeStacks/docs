@@ -1,0 +1,4 @@
+# Zensical build artifacts (root-owned when built via Docker; regenerated).
+.cache/
+/public
+/site

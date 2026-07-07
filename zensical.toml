@@ -1,0 +1,114 @@
+# ---------------------------------------------------------------------------
+# ComputeStacks documentation — Zensical config.
+#
+# Zensical (https://zensical.org) is the successor to MkDocs Material, by the
+# same team. Unlike the CloudPress docs (multi-brand + bilingual, a rendered
+# template), this site is single-brand / single-language, so this is a PLAIN
+# committed config built directly with `zensical build` (no render step).
+#
+# Build/preview run inside Docker (the sandbox can't pip-install Zensical):
+#   bash build/preview.sh                                  # serve @ :8000
+#   bash .claude/skills/manage-docs-site/scripts/build.sh  # strict validate
+# ---------------------------------------------------------------------------
+[project]
+site_name = "ComputeStacks Documentation"
+site_url = "https://docs.computestacks.com/"
+site_description = "Documentation for ComputeStacks — the open-source container platform for service providers."
+docs_dir = "docs"
+site_dir = "public"
+extra_css = ["stylesheets/fonts.css", "stylesheets/extra.css"]
+
+# Navigation is EXPLICIT (see the `nav` array below) → each top-level entry is a
+# tab. Adding a page REQUIRES a nav edit; a new file under docs/ does not appear
+# on its own. See .claude/skills/manage-docs-site/SKILL.md.
+nav = [
+    { "Home" = "index.md" },
+    { "Getting started" = ["getting-started/architecture-overview.md", "getting-started/installation-plan.md", "getting-started/installation-prepare.md", "getting-started/installation-perform.md", "getting-started/installation-finalize.md"] },
+    { "Integrations" = ["integrations/webhooks.md"] },
+    { "Admin guide" = [{ "Billing" = ["admin-guide/billing/overview.md", "admin-guide/billing/plans.md", "admin-guide/billing/free-trials.md", "admin-guide/billing/invoicing-and-payments.md"] }, { "Data management" = ["admin-guide/data-management/controller-backups.md", "admin-guide/data-management/export-a-backup.md"] }, { "Platform management" = ["admin-guide/platform-management/resource-management.md", "admin-guide/platform-management/change-node-ip.md", "admin-guide/platform-management/change-region-name.md", "admin-guide/platform-management/load-balancer-management.md", "admin-guide/platform-management/troubleshoot-backup-issues.md"] }] },
+    { "User guide" = ["user-guide/backup-system.md", "user-guide/developer-tools.md", "user-guide/notifications.md", { "Concepts" = ["user-guide/concepts/sending-mail.md", "user-guide/concepts/ssh-and-sftp-access.md"] }, { "How-to guides" = ["user-guide/how-to/building-images.md", "user-guide/how-to/migrate-app-to-containers.md", "user-guide/how-to/automating-image-deployment.md"] }, { "Image documentation" = ["user-guide/images/mariadb-replication.md", "user-guide/images/elastic-search.md", "user-guide/images/redis.md", "user-guide/images/wordpress.md", "user-guide/images/whmcs.md"] }, { "Third party" = ["user-guide/third-party/cloudflare-integration.md"] }] },
+    { "API reference" = ["api/index.md", { "User API (v8.0)" = ["api/uapi/index.md", "api/uapi/collaborations.md", { "Container Registry" = ["api/uapi/container-registry/index.md", "api/uapi/container-registry/registry-collaborations.md"] }, { "Container Services" = ["api/uapi/container-services/index.md", "api/uapi/container-services/service-host-entry.md", "api/uapi/container-services/service-metadata.md", "api/uapi/container-services/service-resources.md", "api/uapi/container-services/service-ssl.md"] }, "api/uapi/containers.md", "api/uapi/dns-zones.md", "api/uapi/domains.md", "api/uapi/event-logs.md", { "Image" = ["api/uapi/image/index.md", "api/uapi/image/image-collaborations.md", "api/uapi/image/image-environmental-params.md", "api/uapi/image/image-host-entry.md", "api/uapi/image/image-ingress-parameters.md", "api/uapi/image/image-collections.md", "api/uapi/image/image-providers.md", "api/uapi/image/image-relationships.md", "api/uapi/image/image-setting-params.md", "api/uapi/image/image-variants.md", "api/uapi/image/image-volumes.md"] }, { "Subscriptions" = ["api/uapi/subscriptions/index.md", "api/uapi/subscriptions/billing-events.md", "api/uapi/subscriptions/usage.md"] }, "api/uapi/ingress-rules.md", "api/uapi/load-balancers.md", "api/uapi/locations.md", "api/uapi/orders.md", "api/uapi/products.md", { "Projects" = ["api/uapi/projects/index.md", "api/uapi/projects/projects-collaborations.md", "api/uapi/projects/projects-resources.md"] }, { "User" = ["api/uapi/user/index.md", "api/uapi/user/user-ssh-key.md"] }, "api/uapi/volume.md"] }, { "Manage API (v8.0)" = ["api/mapi/index.md", { "Billing" = ["api/mapi/billing/index.md", "api/mapi/billing/billing-plans.md", "api/mapi/billing/billing-phases.md", "api/mapi/billing/prices.md", "api/mapi/billing/products.md", "api/mapi/billing/resources.md"] }, "api/mapi/container-services.md", { "DNS Zones" = ["api/mapi/dns-zones/index.md", "api/mapi/dns-zones/zone-collaborators.md"] }, { "Images" = ["api/mapi/images/index.md", "api/mapi/images/image-collections.md"] }, { "Infrastructure" = ["api/mapi/infrastructure/index.md", "api/mapi/infrastructure/location.md", "api/mapi/infrastructure/node.md", "api/mapi/infrastructure/region.md"] }, "api/mapi/networking.md", { "Projects" = ["api/mapi/projects/index.md", "api/mapi/projects/project-collaborators.md"] }, { "Registry" = ["api/mapi/registry/index.md", "api/mapi/registry/registry-collaborator.md"] }, { "Subscription" = ["api/mapi/subscription/index.md", "api/mapi/subscription/usage.md"] }, { "User" = ["api/mapi/user/index.md", "api/mapi/user/ssh-key.md", "api/mapi/user/user-group.md"] }] }] },
+]
+
+[project.theme]
+# "modern" is Zensical's default design (selected by omitting `variant`).
+features = [
+    "navigation.tabs",
+    "navigation.sections",
+    "navigation.indexes",
+    "navigation.top",
+    "navigation.footer",
+    "content.code.copy",
+    "content.tabs.link",
+    "search.suggest",
+    "search.highlight",
+    "toc.follow",
+]
+logo = "img/logo.png"
+favicon = "img/favicon.png"
+language = "en"
+# Disable Zensical's Google Fonts loading; typefaces are self-hosted in
+# docs/fonts/ via docs/stylesheets/fonts.css. No runtime calls to Google.
+font = false
+
+# Color palette: auto / light / dark with a toggle. The ComputeStacks brand blue
+# (#008fd5) isn't a named Zensical color, so primary/accent are "custom" and the
+# real values live in docs/stylesheets/extra.css. Dark scheme is slate.
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+primary = "custom"
+accent = "custom"
+toggle.icon = "material/brightness-auto"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "material/brightness-7"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "material/brightness-4"
+toggle.name = "Switch to system preference"
+
+# Open external links in a new tab.
+[project.plugins.privacy]
+links_attr_map.target = "_blank"
+
+# Markdown extensions. NOTE: an explicit list REPLACES Zensical's defaults, so
+# every feature the content uses must be listed here.
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.tables]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+    { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.snippets]
+[project.markdown_extensions.pymdownx.caret]
+[project.markdown_extensions.pymdownx.mark]
+[project.markdown_extensions.pymdownx.tilde]
+[project.markdown_extensions.pymdownx.keys]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+combine_header_slug = true
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
