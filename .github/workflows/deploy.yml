@@ -1,0 +1,64 @@
+name: Deploy docs to GitHub Pages
+
+# Build the Zensical site and publish it to GitHub Pages on every push to the
+# default branch (and on manual dispatch). Uses the GitHub Actions Pages flow
+# (Settings → Pages → Source: GitHub Actions), so no gh-pages branch is needed.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege needed for the Pages deployment.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; let an in-progress run finish rather than
+# cancelling it (avoids a half-published site).
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      # Zensical is pre-1.0 — pin it (keep in sync with build/preview.sh and
+      # .claude/skills/manage-docs-site/scripts/build.sh).
+      - name: Install Zensical
+        run: pip install zensical==0.0.45
+
+      # --strict fails the build on broken links / unresolved references, so a
+      # regression is caught here instead of being published. Outputs to public/
+      # (the site_dir set in zensical.toml).
+      - name: Build (strict)
+        run: zensical build --strict
+
+      # Custom domain — written into the published output on every deploy so the
+      # Pages custom-domain setting can't drift. Must match site_url in zensical.toml.
+      - name: Set custom domain (CNAME)
+        run: echo "docs.computestacks.com" > public/CNAME
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
