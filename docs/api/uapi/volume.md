@@ -4,7 +4,7 @@
 
 `GET /api/volumes`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `volumes`: Array
@@ -57,7 +57,7 @@
 
 `GET /api/volumes/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `volume`: Object
@@ -112,7 +112,7 @@
 
 `GET /api/volumes/{volume-id}/backups`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -125,7 +125,7 @@
 
 `POST /volumes/{volume-id}/backups`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 **Schema**
 
@@ -135,7 +135,7 @@
 
 `POST /volumes/{volume-id}/restore`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 **Schema**
 

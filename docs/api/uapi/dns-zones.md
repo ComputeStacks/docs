@@ -108,6 +108,8 @@
 
 `GET /api/zones/{zone-id}/collaborators`
 
+**OAuth authorization required**: `dns_write`
+
 ??? abstract "Schema"
     - `collaborations`: Array
         - `id`: Integer
@@ -121,6 +123,8 @@
 ## View Collaborator
 
 `GET /api/zones/{zone-id}/collaborators/{id}`
+
+**OAuth authorization required**: `dns_write`
 
 ??? abstract "Schema"
     - `collaboration`: Object
@@ -143,6 +147,8 @@
 
 `POST /api/zones/{zone-id}/collaborators`
 
+**OAuth authorization required**: `dns_write`
+
 ??? abstract "Schema"
     - `collaborator`: Object
         - `user_email`: String
@@ -152,3 +158,5 @@
 ## Remove Collaborator
 
 `DELETE /api/zones/{zone-id}/collaborators/{id}`
+
+**OAuth authorization required**: `dns_write`

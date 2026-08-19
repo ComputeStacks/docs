@@ -90,7 +90,7 @@ Authorization URL | `/api/oauth/authorize`
 - `order_read`
 - `order_write`
 - `profile_read`
-- `profile_write`
+- `profile_update`
 - `register`
 - `project_read`
 - `project_write`

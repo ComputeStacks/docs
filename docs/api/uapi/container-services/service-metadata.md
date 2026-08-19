@@ -4,7 +4,7 @@
 
 `GET /api/container_services/{container-service-id}/metadata`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `metadata`: Array
@@ -22,7 +22,7 @@
 
 `GET /api/container_services/{container-service-id}/metadata/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `metadata`: Object

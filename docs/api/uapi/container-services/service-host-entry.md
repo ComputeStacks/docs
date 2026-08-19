@@ -6,7 +6,7 @@ Create custom host entries (`/etc/hosts`) that link to other linked images in th
 
 `GET /api/container_services/{container-service-id}/host_entries`
 
-**OAuth Authorization Required**: `projects_read`
+**OAuth Authorization Required**: `project_read`
 
 ??? abstract "Schema"
     - `host_entries`: Array
@@ -25,7 +25,7 @@ Create custom host entries (`/etc/hosts`) that link to other linked images in th
 
 `GET /api/container_services/{container-service-id}/host_entries/{id}`
 
-**OAuth Authorization Required**: `projects_read`
+**OAuth Authorization Required**: `project_read`
 
 ??? abstract "Schema"
     - `host_entries`: Object
@@ -44,7 +44,7 @@ Create custom host entries (`/etc/hosts`) that link to other linked images in th
 
 `PATCH /api/container_services/{container-service-id}/host_entries/{id}`
 
-**OAuth Authorization Required**: `projects_write`
+**OAuth Authorization Required**: `project_write`
 
 ??? abstract "Schema"
     - `host_entry`: Object
@@ -58,7 +58,7 @@ Create custom host entries (`/etc/hosts`) that link to other linked images in th
 
 `POST /api/container_services/{container-service-id}/host_entries`
 
-**OAuth Authorization Required**: `projects_write`
+**OAuth Authorization Required**: `project_write`
 
 ??? abstract "Schema"
     - `host_entry`: Object
@@ -71,4 +71,4 @@ Create custom host entries (`/etc/hosts`) that link to other linked images in th
 
 `DELETE /api/container_services/{container-service-id}/host_entries/{id}`
 
-**OAuth Authorization Required**: `projects_write`
+**OAuth Authorization Required**: `project_write`

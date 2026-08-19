@@ -4,7 +4,7 @@
 
 `GET /api/domains`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `domains`: Array
@@ -25,7 +25,7 @@
 
 `GET /api/domains/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `domains`: Array
@@ -49,7 +49,7 @@
 
 `POST /api/domains`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ??? abstract "Schema"
     - `domain`: Object
@@ -64,7 +64,7 @@
 
 `PATCH /api/domains/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ??? abstract "Schema"
     - `domain`: Object
@@ -87,4 +87,4 @@
 
 Manually verify a domain to enable LetsEncrypt. This will happen automatically every 10-15minutes.
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`

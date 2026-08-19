@@ -10,7 +10,7 @@
 
 `GET /api/projects`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `projects`: Array
@@ -35,7 +35,7 @@
 
 `GET /api/projects/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `project`: Object
@@ -60,7 +60,7 @@
 
 `PATCH /api/projects/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ??? abstract "Schema"
     - `project`: Object
@@ -72,4 +72,4 @@
 
 `DELETE /api/projects/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`

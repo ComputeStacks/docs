@@ -14,7 +14,7 @@
 
 `GET /api/container_services`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? note "View Schema"
     - `container_services`: Array
@@ -73,7 +73,7 @@
 
 `GET /api/container_services/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? note "View Schema"
     - `container_service`: Object
@@ -132,7 +132,7 @@
 
 `PATCH /api/container_services/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ??? abstract "Schema"
     - `container_service`: Object
@@ -145,7 +145,7 @@
 
 `DELETE /api/container_services/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ---
 
@@ -155,7 +155,7 @@ Initiate a resize event for a ContainerService
 
 `POST /api/container_services/{container-service-id}/resize`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 **Schema**
 
@@ -179,7 +179,7 @@ Initiate a scale event for a ContainerService
 
 `POST /api/container_services/{container-service-id}/scale`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 **Schema**
 
@@ -203,7 +203,7 @@ Perform a power action on all containers belonging to a service
 
 `PUT /api/container_services/{container-service-id}/power/{action}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 **Schema**
 
@@ -217,7 +217,7 @@ View Recent Logs
 
 `GET /api/container_services/{id}/logs`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 

@@ -6,7 +6,7 @@ Please see individual resources for their specific endpoint to list events. This
 
 `GET /api/event_logs/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `event_log`: Object

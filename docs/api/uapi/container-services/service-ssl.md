@@ -7,7 +7,7 @@
 
 `GET /api/container_services/{container-service-id}/ssl`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `certificates`: Array
@@ -26,7 +26,7 @@
 
 `GET /api/container_services/{container-service-id}/ssl/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `certificates`: Object
@@ -45,7 +45,7 @@
 
 `POST /api/container_services/{container-service-id}/ssl`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ??? abstract "Schema"
     - `certificate`: Object
@@ -59,4 +59,4 @@
 
 `DELETE /api/container_services/{container-service-id}/ssl/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`

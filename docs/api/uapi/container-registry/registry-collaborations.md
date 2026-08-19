@@ -4,7 +4,7 @@
 
 `GET /api/container_registry/{container-registry-id}/collaborators`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `images_read`
 
 ??? abstract "Schema"
     - `collaborations`: Array
@@ -20,7 +20,7 @@
 
 `GET /api/container_registry/{container-registry-id}/collaborators/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `images_read`
 
 ??? abstract "Schema"
     - `collaboration`: Object
@@ -43,7 +43,7 @@
 
 `POST /api/container_registry/{container-registry-id}/collaborators`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `images_write`
 
 ??? abstract "Schema"
     - `collaborator`: Object
@@ -55,4 +55,4 @@
 
 `DELETE /api/container_registry/{container-registry-id}/collaborators/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `images_write`

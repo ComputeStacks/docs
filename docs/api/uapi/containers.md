@@ -4,7 +4,7 @@
 
 `GET /api/containers/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `containers`: Array
@@ -46,7 +46,7 @@
 
 `PUT /api/containers/{container-id}/power/{action}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 `action`: `String<start,stop,restart,rebuild>`
 
@@ -56,7 +56,7 @@
 
 `GET /api/containers/{id}/logs`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 - `limit`: Integer | How many lines to include?
 - `period_start`: Integer | Log date range (start). As an integer, time since epoch. Default: 1 day ago
@@ -96,7 +96,7 @@ View processes inside of a container
 
 `GET /api/containers/{container-id}/container_processes`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 Returns an Array of Objects containing:
@@ -122,7 +122,7 @@ Both the time, and date/memory label and format, will be formatted to match your
 
 `GET /api/containers/{container-id}/metrics/cpu`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -146,7 +146,7 @@ Both the time, and date/memory label and format, will be formatted to match your
 
 `GET /api/containers/{container-id}/metrics/memory`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 

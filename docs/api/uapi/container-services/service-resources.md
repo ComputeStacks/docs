@@ -4,7 +4,7 @@
 
 `GET /api/container_services/{container-service-id}/ingress_rules`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -16,7 +16,7 @@
 
 `GET /api/container_services/{container-service-id}/events`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -28,7 +28,7 @@
 
 `GET /api/container_services/{container-service-id}/containers`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -40,7 +40,7 @@
 
 `GET /api/container_services/{container-service-id}/bastions`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `bastions`: Array
@@ -62,7 +62,7 @@
 
 `GET /api/container_services/{container-service-id}/load_balancers`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 

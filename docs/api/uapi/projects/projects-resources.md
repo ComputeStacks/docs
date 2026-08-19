@@ -8,7 +8,7 @@ SSH/SFTP Containers
 
 `GET /api/projects/{project-id}/bastions`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `bastions`: Array
@@ -28,13 +28,13 @@ SSH/SFTP Containers
 
 `POST /api/projects/{project-id}/bastions/{id}/reset_password`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ## Containers
 
 `GET /api/projects/{project-id}/containers`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -44,7 +44,7 @@ SSH/SFTP Containers
 
 `GET /api/projects/{project-id}/events`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `event_log`: Array
@@ -72,7 +72,7 @@ SSH/SFTP Containers
 
 `GET /api/project/{project-id}/images`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -82,7 +82,7 @@ SSH/SFTP Containers
 
 `GET /api/projects/{project-id}/services`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 

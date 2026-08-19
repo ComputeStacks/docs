@@ -6,7 +6,7 @@ Returns the available products and pricing for your current user
 
 `GET /api/products`
 
-**OAuth authorization required**: `profile_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `products`: Array

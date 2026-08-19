@@ -4,7 +4,7 @@
 
 `GET /api/networks/ingress_rules/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 ??? abstract "Schema"
     - `ingress_rule`: Object
@@ -34,7 +34,7 @@
 
 `PATCH /api/networks/ingress_rules/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ??? abstract "Schema"
     - `ingress_rule`: Object
@@ -55,7 +55,7 @@ You may also edit the ingress rule and specify `external_access`.
 
 `POST /api/networks/ingress_rules/{id}/toggle_nat`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ---
 
@@ -63,7 +63,7 @@ You may also edit the ingress rule and specify `external_access`.
 
 `POST /api/networks/ingress_rules`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ??? abstract "Schema"
     - `ingress_rule`: Object
@@ -82,7 +82,7 @@ You may also edit the ingress rule and specify `external_access`.
 
 `DELETE /api/networks/ingress_rules/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 ---
 
@@ -92,7 +92,7 @@ Find domains associated with this ingress rule
 
 `GET /api/networks/ingress_rules/{id}/domains`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 

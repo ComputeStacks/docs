@@ -4,7 +4,7 @@
 
 `GET /api/projects/{project-id}/collaborators`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -19,7 +19,7 @@
 
 `GET /api/projects/{project-id}/collaborators/{id}`
 
-**OAuth authorization required**: `projects_read`
+**OAuth authorization required**: `project_read`
 
 **Schema**
 
@@ -41,7 +41,7 @@
 
 `POST /api/projects/{project-id}/collaborators`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
 
 **Schema**
 
@@ -52,4 +52,4 @@
 
 `DELETE /api/projects/{project-id}/collaborators/{id}`
 
-**OAuth authorization required**: `projects_write`
+**OAuth authorization required**: `project_write`
