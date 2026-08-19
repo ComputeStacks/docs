@@ -2,3 +2,6 @@
 .cache/
 /public
 /site
+
+# Claude Code agent worktrees.
+.claude/worktrees
