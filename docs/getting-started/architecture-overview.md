@@ -1,153 +1,146 @@
 # Architecture Overview
 
-ComputeStacks is a collection of open-source software, running in a clustered environment. This guide will walk through some of the key components to help you make an informed decision when planning your environment.
+ComputeStacks is a collection of open-source software that runs across a small cluster of servers. This page describes each component, how they fit together, and the vocabulary the installer uses, so you can plan your environment before you install it.
 
-All servers will use Debian 12.
+Every server runs **Ubuntu 26.04 LTS** (amd64). The whole environment is installed and maintained by the [ComputeStacks provisioner](https://github.com/ComputeStacks/ansible-install), a set of Ansible playbooks you run from your own workstation.
 
-## Definitions
+## Components
+
+A complete environment has six server roles. Each one is an Ansible inventory group.
+
+| Role | What it runs | How many |
+| --- | --- | --- |
+| **Controller** | The ComputeStacks portal and API, PostgreSQL, Redis, Vault (the internal certificate authority for Docker), and nginx with automatic TLS certificates. | Exactly one. |
+| **Metrics** | Prometheus, Alertmanager, and Loki, behind nginx with TLS and basic auth. | One per site. |
+| **Backup** | A [borg](https://www.borgbackup.org/) backup server that holds your customers' volume backups. | Zero or one per site. |
+| **Registry** | The host the controller creates your customers' private container registries on. | Zero or one. |
+| **Nameservers** | PowerDNS, with a primary and any number of replicated followers. | One primary and zero or more followers, or none if you manage DNS elsewhere. |
+| **Container nodes** | Docker, the ComputeStacks agent, the HAProxy load balancer, and the metrics and log shippers. | One per availability zone. |
+
+The smallest sensible installation is **five servers plus one container node**: a controller, a metrics server, a backup server, a registry, a nameserver, and a node.
 
 ### Controller
 
-The *Controller* is the primary ComputeStacks software. This manages the orchestration of containers onto the *Container Nodes*.
+The *controller* is the primary ComputeStacks software. It hosts the web portal and API, and it orchestrates containers onto the container nodes. It talks to each node's Docker engine over mutual TLS and to each node's agent over HTTP.
 
-### Region
+### Container nodes
 
-A *Region* is typically a geographic location that is used to group *Availability Zones*.
-
-### Availability Zone
-
-An *Availability Zone* is a unit of resources within the same region that is used to group *Container Nodes*.
-
-!!! tip
-    This is a holdover from previous version of ComputeStacks that supported multiple clustered nodes within an availability zone. From v9 forward, all *Availability Zones* will only ever have 1 node.
-
-### Container Node
-
-*Container Nodes* are the physical compute resources that will run the containers. 
+*Container nodes* are the compute resources that run your customers' containers. Each node also runs its own HAProxy load balancer, which the controller configures. Traffic for a customer's container arrives at the node that hosts it.
 
 !!! note
-    While the CPU on a node is shared with all containers on the node, you must have enough cores to match the maximum package size you wish to offer. 
-    For example, if you wish to sell a 4 core CPU package, then you will need at least 4 CPU Cores available on the node.
-
-## Key Concepts
-
-### Networking
-
-### Container-To-Container
-
-Each container is given a private IP Address, and by default can only communicate with other containers in the same project. If you choose to allow external connectivity, then our load balancer will forward `80/443` to your container.
-
-### External Connectivity
-
-ComputeStacks supports `http`, `tcp`, and `udp` traffic. With `http` and `tcp`, the user has the option to route the traffic through our global load balancer and enable SSL/TLS offloading. (HTTP by default will always route this way).
-
-Our load balancer runs on the container nodes.
-
-### Container Storage
-
-Our default configuration is to run our containers using locally-mounted storage volumes. This provides both performance, stability, and cost benefits over shared/clustered storage, and for our typical customer, provides the best fit for their business model.
-
-### Backups
-
-ComputeStacks uses an in-house developed backup solution, built upon the excellent [borg](https://www.borgbackup.org/) backup tool. We include specific backup integrations for MySQL/MariaDB and PostgreSQL that ensure consistent and unobtrusive backups.
-
-You will need to provide a separate backup server that will hold your customer’s backups. Our installation process will automatically configure a base debian install to serve this function. We also recommend that you *do not* share a single backup server across multiple regions.
-
-### Container Registry
-
-ComputeStacks offers an integrated container registry to aid in your customers image development. For small deployments, we will run this on the same server as our controller. However, we recommend that this run on it’s own server.
+    While the CPU on a node is shared by all of its containers, you must have enough cores to match the largest package you want to offer. For example, to sell a 4-core package, the node needs at least 4 CPU cores.
 
 ### Metrics
 
-As part of our normal installation process, we will configure a dedicated metrics and log aggregation server. This will collect, store, and process logs and metrics from all servers and containers in the cluster. We recommend that you install one metrics server per region. If there is too much latency between the metrics server and the container nodes, alerting and resource usage data could be delayed.
+The metrics server collects, stores, and processes metrics and logs from every server and container in its site. The controller also queries it when placing new containers. If there is too much latency between the metrics server and the nodes, alerting and resource-usage data can be delayed, which is why each site has its own.
+
+### Backups
+
+ComputeStacks has its own backup system, built on [borg](https://www.borgbackup.org/), with specific integrations for MySQL/MariaDB and PostgreSQL that take consistent, unobtrusive backups. The agent on each node sends customer volume backups to its site's backup server. A site with no backup server installs its nodes with backups disabled.
+
+!!! warning
+    The backup server holds *customer* data only. The controller's own database is not backed up automatically. See [After installation](after-installation.md#back-up-the-controller-database).
+
+### Container registry
+
+ComputeStacks includes an integrated container registry to help your customers build and ship their own images. The controller creates each customer registry on the registry host over SSH.
 
 ### DNS
 
-ComputeStacks includes a DNS manager and integration to PowerDNS. This is used for both allowing your customers to host dns ones with you, while also providing support for generating wildcard SSL certificates for your load balancer. Our ansible installer can provision a replicated PowerDNS setup automatically.
+ComputeStacks includes a DNS manager with a PowerDNS integration. It lets your customers host DNS zones with you, and it provides the records needed to issue certificates for the containers behind your load balancers. The provisioner can install a replicated PowerDNS cluster for you. If you manage DNS some other way, you can skip the nameservers.
 
----
+## Vocabulary
 
-## Example Configurations
+The provisioner and the controller use slightly different names for the same things.
+
+| In the inventory | In the controller | Meaning |
+| --- | --- | --- |
+| `region` | Location | A geographic location, for example `ams1`. |
+| `az` | Region | An availability zone inside a location. Each one has exactly one container node. |
+| `site` | *(none)* | The physical facility a server lives in. It decides which metrics server and backup server a node uses. |
+| `cs_app_zone` | DNS zone | The single parent domain that all customer container hostnames live under. |
+| `app_domain` | Load balancer domain | The domain a single availability zone's load balancer answers on. Defaults to `cs_app_zone`. |
 
 !!! tip
-    The following configuration examples are for planning purposes only. Please work with our team to design an appropriate architecture to meet your goals.
+    Earlier versions of ComputeStacks supported several nodes in one availability zone. From v9 forward, each availability zone has exactly one node.
 
-    The recommendations below are based on a typical hosting provider's workload. This means that a majority of the containers deployed will be php-based *(e.g. wordpress)*, and use Redis & MySQL.
+### Sites
 
-!!! note
-    Please see our [installation guide](installation-plan.md) for our minimum requirements.
+A *site* exists only in the provisioner and is never stored in the controller. Two locations can share one facility, so the site, not the location, decides which metrics server scrapes a node and which backup server it writes to. A location never spans sites.
 
-*We recommend that the controller communicates with the other nodes over a private network.*
+**A single-site installation doesn't need to set `site` anywhere.** Every server then falls into a site called `default`.
 
-### Minimum Requirements
+## Key concepts
 
-```markdown
-Container registry and metrics run on the controller.
+### Networking
 
-Server Role    | CPU     | Memory | Storage
----------------|---------|--------|---------
-Controller     | 4 Cores | 8 GB   | 100 GB
-Container Node | 4 Cores | 12 GB  | 150 GB
-Backup Server  | 1 Core  | 1 GB   | 150 GB
-PowerDNS 1     | 1 Core  | 1 GB   | 20 GB
-PowerDNS 2     | 1 Core  | 1 GB   | 20 GB
-```
+Each server has a private address (`primary_ip`) that the control plane uses and a public address (`public_ip`). They may be the same address. We recommend a private network between the controller and the other servers.
 
-### Recommended Minimum Environment
+For regions that don't share a private network with the controller, the provisioner can join every server to a [Tailscale](https://tailscale.com) network. The controller then reaches each node's agent, and Prometheus scrapes each node, over that encrypted network instead of the public internet.
 
-```markdown
-Container Registry runs on the controller
+The provisioner manages each server's firewall itself, using nftables.
 
-Server Role      | CPU     | Memory | Storage
------------------|---------|--------|--------
-Controller       | 4 Cores | 8 GB   | 100 GB
-Container Node   | 4 Cores | 12 GB  | 150 GB
-Backup Server    | 1 Core  | 1 GB   | 150 GB
-Metrics          | 2 Cores | 4 GB   | 50 GB
-PowerDNS 1       | 1 Core  | 1 GB   | 20 GB
-PowerDNS 2       | 1 Core  | 1 GB   | 20 GB
-```
+### Container-to-container
 
-### Typical Production Single Region
+Each container gets a private IP address. By default, it can only communicate with other containers in the same project.
 
-```markdown
-Server Role        | CPU      | Memory | Storage
--------------------|----------|--------|--------
-Controller         | 4 Cores  | 12 GB  | 100 GB
-Container Node     | 12 Cores | 48 GB  | 350 GB
-Container Registry | 4 Cores  | 12 GB  | 300 GB
-Backup Server      | 1 Core   | 1 GB   | 300 GB
-Metrics            | 4 Cores  | 8 GB   | 100 GB
-PowerDNS 1         | 1 Core   | 1 GB   | 20 GB
-PowerDNS 2         | 1 Core   | 1 GB   | 20 GB
-```
+### External connectivity
 
-### Multi-Region Example
+ComputeStacks supports `http`, `tcp`, and `udp` traffic. With `http` and `tcp`, the user can route traffic through the node's load balancer and enable TLS offloading. HTTP always routes this way. Container nodes accept customer traffic on ports 80 and 443, and on ports 10000–50000 for TCP and UDP services.
 
-```markdown
-# Shared Resources
+### Container storage
 
-Server Role        | CPU      | Memory | Storage
--------------------|----------|--------|--------
-Controller         | 4 Cores  | 12 GB  | 100 GB
-Container Registry | 4 Cores  | 12 GB  | 300 GB
-PowerDNS 1         | 1 Core   | 1 GB   | 20 GB
-PowerDNS 2         | 1 Core   | 1 GB   | 20 GB
+By default, containers use locally mounted storage volumes. This gives better performance, stability, and cost than shared or clustered storage, and is the best fit for most hosting providers.
 
-# Region 1
+## Example configurations
 
-Server Role        | CPU      | Memory | Storage
--------------------|----------|--------|--------
-Container Node     | 12 Cores | 48 GB  | 350 GB
-Backup Server      | 1 Core   | 1 GB   | 300 GB
-Metrics            | 4 Cores  | 8 GB   | 100 GB
+!!! tip
+    These examples are for planning only. They assume a typical hosting workload, where most containers are PHP-based (for example, WordPress) and use Redis and MySQL.
 
-# Region 2
+We recommend running each role on its own server.
 
-Server Role        | CPU      | Memory | Storage
--------------------|----------|--------|--------
-Container Node     | 12 Cores | 48 GB  | 350 GB
-Backup Server      | 1 Core   | 1 GB   | 300 GB
-Metrics            | 4 Cores  | 8 GB   | 100 GB
+### Minimum environment
 
-```
+| Server role | CPU | Memory | Storage |
+| --- | --- | --- | --- |
+| Controller | 4 cores | 8 GB | 100 GB |
+| Container node | 4 cores | 12 GB | 150 GB |
+| Metrics | 2 cores | 4 GB | 50 GB |
+| Backup | 1 core | 1 GB | 150 GB |
+| Registry | 2 cores | 4 GB | 100 GB |
+| Nameserver | 1 core | 1 GB | 20 GB |
+
+### Typical production, single region
+
+| Server role | CPU | Memory | Storage |
+| --- | --- | --- | --- |
+| Controller | 4 cores | 12 GB | 100 GB |
+| Container node | 12 cores | 48 GB | 350 GB |
+| Registry | 4 cores | 12 GB | 300 GB |
+| Metrics | 4 cores | 8 GB | 100 GB |
+| Backup | 1 core | 1 GB | 300 GB |
+| Nameserver 1 | 1 core | 1 GB | 20 GB |
+| Nameserver 2 | 1 core | 1 GB | 20 GB |
+
+### Multi-region
+
+Shared by every region:
+
+| Server role | CPU | Memory | Storage |
+| --- | --- | --- | --- |
+| Controller | 4 cores | 12 GB | 100 GB |
+| Registry | 4 cores | 12 GB | 300 GB |
+| Nameserver 1 | 1 core | 1 GB | 20 GB |
+| Nameserver 2 | 1 core | 1 GB | 20 GB |
+
+For each site:
+
+| Server role | CPU | Memory | Storage |
+| --- | --- | --- | --- |
+| Container node (one per availability zone) | 12 cores | 48 GB | 350 GB |
+| Metrics | 4 cores | 8 GB | 100 GB |
+| Backup | 1 core | 1 GB | 300 GB |
+
+## Next steps
+
+Continue to [Requirements](requirements.md).

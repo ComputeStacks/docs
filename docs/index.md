@@ -11,7 +11,7 @@ Open-Source turnkey platform enabling providers to launch a unique hosting offer
 
     ---
 
-    Understand the architecture, then plan, prepare, perform, and finalize your installation.
+    Understand the architecture, prepare your servers and DNS, and install ComputeStacks with the provisioner.
 
     [:octicons-arrow-right-24: Getting started](getting-started/architecture-overview.md)
 
