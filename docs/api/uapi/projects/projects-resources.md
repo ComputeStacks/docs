@@ -30,6 +30,32 @@ SSH/SFTP Containers
 
 **OAuth authorization required**: `project_write`
 
+Generates a new password and rebuilds the bastion (SSH) container. The rebuild
+disconnects any open SSH, SFTP, and cloud shell sessions, and the new password takes
+effect once the rebuild completes. Host keys are kept, so clients do not see a
+changed-key warning. The password is rotated even while password auth (`pw_auth`) is
+disabled.
+
+Responds with `202 Accepted` and the bastion, including its new password.
+
+If the rebuild cannot be started (for example, the node is offline or another action is
+in progress on the bastion), the password is left unchanged and the response is
+`422 Unprocessable Entity` with `errors`.
+
+??? abstract "Schema"
+    - `bastion`: Object
+        - `id`: Integer
+        - `name`: String
+        - `status`: String
+        - `node_id`: Integer
+        - `ip_addr`: String
+        - `created_at`: DateTime
+        - `updated_at`: DateTime
+        - `port`: Integer
+        - `pw_auth`: Boolean | If true, password auth is enabled.
+        - `username`: String
+        - `password`: String | The new password.
+
 ## Containers
 
 `GET /api/projects/{project-id}/containers`
