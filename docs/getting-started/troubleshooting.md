@@ -2,7 +2,7 @@
 
 ## Re-running the installer
 
-The installer is safe to re-run. Each run brings every server back in line with your inventory, so after fixing a problem, run it again.
+The installer is safe to re-run. Each run brings every server back in line with your inventory, so after fixing a problem, run it again. A run can reboot servers with pending updates; see [Automatic reboots](install.md#automatic-reboots).
 
 The controller's database is the exception. The installer creates locations, availability zones, nodes, load balancers, and settings only when they are missing, and never overwrites them. If your inventory disagrees with what's already in the controller, the run reports the difference instead of applying it. Change those settings in the controller's admin area.
 
@@ -16,14 +16,14 @@ Preflight runs first and changes nothing. Its message tells you what to fix. The
 **Ansible isn't connecting as root.**
 : Set `ansible_user: root` in `group_vars/all/main.yml`. On Ubuntu cloud images, also add `disable_root: false` to the cloud-init user data.
 
-**The hostname doesn't match.**
-: The server's hostname must be a single lowercase word, and must equal `hostname` in the inventory. Fix it with `hostnamectl set-hostname`.
+**The hostname isn't valid.**
+: `hostname` in the inventory must be a single lowercase word: letters, digits, and hyphens, starting with a letter. Set the same name on the server with `hostnamectl set-hostname`.
 
 **`secret_key_base` or `user_auth_secret` is missing or too short.**
 : Generate each with `openssl rand -hex 64`.
 
 **Load balancer DNS records are missing or wrong.**
-: Each availability zone needs an A record for its `app_domain` and a wildcard **CNAME** pointing to it. See [Load balancer records](dns.md#load-balancer-records).
+: Each availability zone needs an A record for its `app_domain` and a wildcard **CNAME** pointing to it. See [Load balancer records](dns.md#load-balancer-records). If your control machine can't see those records, for example with split-horizon DNS, set `preflight_check_app_domain_dns: false` to skip this check.
 
 ## Load balancer domain not valid
 
@@ -42,7 +42,7 @@ Until the domain is valid, nothing can be deployed into that availability zone.
 If a node fails at the enrollment step, the `hostname` in the inventory most likely differs from the node's actual hostname. Correct it and re-run the installer. To re-enroll a single node:
 
 ```bash
-make site ENV=prod ARGS='--tags enroll'
+make site ENV=prod LIMIT=node1001 ARGS='--tags enroll'
 ```
 
 ## A controller seeding failure
@@ -68,6 +68,14 @@ If a node with a public IPv6 address loses its default route about 30 minutes af
 ## Remote nodes can't reach the controller
 
 If the `acme_backend` check fails on a node in a remote region, the node can't reach the controller's private address. Either join both to Tailscale, or set `controller_acme_address` on the node to a controller address it can reach.
+
+If the availability zone already exists in the controller, changing either of these doesn't update the address the controller has stored. Once the new path works, apply it with a full run:
+
+```bash
+make site ENV=prod ARGS='-e controller_seed_update_addresses=true'
+```
+
+The run shows the address changes and pauses for you to confirm them.
 
 ## Where to find logs
 

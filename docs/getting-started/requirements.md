@@ -51,11 +51,21 @@ The provisioner configures each server's firewall. Your provider's network, and 
 | Customer TCP/UDP services | 10000–50000 TCP and UDP | Container nodes |
 | Portal, API, and certificate issuance | 80, 443 TCP | Controller |
 | Certificate issuance (HTTP-01) | 80 TCP | Metrics and registry servers |
+| Customer container registries | 443 TCP, 10000–50000 TCP | Registry server |
 | DNS | 53 TCP and UDP | Nameservers |
 | SSH | 22 TCP | Every server, from your control machine and the controller |
 | Tailscale (optional) | 41641 UDP | Every server |
 
-Traffic between servers on the private network (Docker TLS on 2376, the agent on 8500, metrics scrapes, PostgreSQL replication, and so on) is opened by the provisioner's own firewall rules, limited to the servers that need it.
+Traffic between servers (Docker TLS, the agent, metrics scrapes, PostgreSQL replication, and so on) is opened by the provisioner's own firewall rules, limited to the servers that need it. If a region reaches the other servers over the public internet rather than a private network or Tailscale, your provider's firewall must also allow:
+
+| Traffic | Ports | From | To |
+| --- | --- | --- | --- |
+| Docker TLS and the agent | 2376, 8500 TCP | Controller | Container nodes |
+| Metrics scrapes | 9100, 8080, 81 TCP | Metrics server | Container nodes |
+| Node metrics scrapes | 9100 TCP | Metrics server | Every server |
+| Certificate service | 3000 TCP | Container nodes | Controller |
+| Log shipping | 3102 TCP | Container nodes | Metrics server |
+| Backups (borg over SSH) | 22 TCP | Container nodes | Backup server |
 
 Every server also needs outbound HTTPS to download packages and images, including from `download.docker.com`, `apt.postgresql.org`, `repo.computestacks.com`, `ghcr.io`, Docker Hub, and GitHub.
 

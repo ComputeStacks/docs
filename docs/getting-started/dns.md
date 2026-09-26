@@ -75,7 +75,7 @@ Without it, some resolvers reject the nameservers' answers for record types that
 
 ## Without the bundled nameservers
 
-If you set `dns_driver: none`, the installer skips the nameservers and doesn't configure DNS in the controller. You still need the platform server records and the load balancer records above. You can configure a DNS driver in the controller's admin area afterward.
+To manage DNS without the bundled nameservers, leave the `nameservers` group out of your inventory and set `dns_driver: none`. The installer then doesn't install PowerDNS or configure DNS in the controller. You still need the platform server records and the load balancer records above. You can configure a DNS driver in the controller's admin area afterward.
 
 ## Next steps
 

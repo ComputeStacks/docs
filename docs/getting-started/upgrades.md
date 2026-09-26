@@ -12,11 +12,11 @@ It backs up the database first, then pulls the new image, runs any migrations, a
 
 Re-running the installer also upgrades the controller whenever the running image doesn't match the configured one.
 
-To move to a new minor or major release, read that release's notes first. Then set `controller_image_tag` on the controller in `hosts.yml`, for example `controller_image_tag: "9.8"`, and re-run the installer.
+To move to a new minor or major release, read that release's notes first. Then set `controller_image_tag` on the controller in `hosts.yml`, for example `controller_image_tag: "9.8"`, and re-run the installer. This setting overrides the provisioner's default, so remove it once a provisioner update moves the default to that release or later.
 
 ## Everything else
 
-Every other component the provisioner installs, such as Docker, the ComputeStacks agent, borg, Prometheus, and Loki, is pinned to an exact version. Nothing upgrades on its own: these packages are held so that unattended upgrades can't move them.
+Every other component the provisioner installs, such as Docker, the ComputeStacks agent, borg, Prometheus, and Loki, is pinned to an exact version, and nothing upgrades on its own. The Docker, agent, HAProxy, and node exporter packages are held so that unattended upgrades can't move them.
 
 To upgrade them, upgrade the provisioner and re-run it:
 
@@ -28,3 +28,6 @@ make site ENV=prod
 ```
 
 The installer converges every server to the pinned versions and restarts services as needed. Operating system security updates are installed automatically by unattended upgrades.
+
+!!! warning
+    A run reboots any server that has pending updates requiring a reboot. See [Automatic reboots](install.md#automatic-reboots).

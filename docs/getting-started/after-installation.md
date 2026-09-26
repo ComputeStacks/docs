@@ -32,7 +32,7 @@ To skip a check, pass its name to `--skip-tags`, for example `make validate ENV=
     The controller validates load balancer domains in the background, a few minutes after they are created. If `lb_domain` reports that the result isn't available yet, wait a few minutes and run it again:
 
     ```bash
-    make validate ENV=prod ARGS='--tags lb_domain'
+    make site ENV=prod ARGS='--tags lb_domain'
     ```
 
 ## Log in
@@ -84,7 +84,7 @@ The installer adds a `cstacks` command to the controller for day-to-day operatio
 | `cstacks database-backup` | Back up the controller database. |
 | `cstacks logs`, `cstacks tail-logs` | Show or follow the controller's logs. |
 | `cstacks console` | Open a Rails console in the controller container. |
-| `cstacks test` | Test the controller's connections to its services. |
+| `cstacks test` | Test the controller's connections to each node: Docker, SSH, and the agent. |
 
 ## Next steps
 

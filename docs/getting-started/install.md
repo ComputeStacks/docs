@@ -225,7 +225,7 @@ The installer requests certificates for the portal, metrics, and registry domain
 | `zerossl` | ZeroSSL (the default). |
 | `letsencrypt` | Let's Encrypt. |
 | `letsencrypt_test` | Let's Encrypt staging. Untrusted certificates, for test environments. |
-| `google` | Google Trust Services. Also set `acme_eab_kid`, and `acme_eab_hmac_key` in `secrets.yml`. |
+| `google` | Google Trust Services. Also set `acme_eab_kid` in `main.yml` and `acme_eab_hmac_key` in `secrets.yml`. |
 | `buypass`, `sslcom` | Buypass or SSL.com. |
 
 You can also set `acme_ca` to the full URL of any ACME directory.
@@ -250,6 +250,15 @@ The [provisioner's ACME guide](https://github.com/ComputeStacks/ansible-install/
 
 Add `ubuntu_pro_token` to `secrets.yml` to attach every server to Ubuntu Pro and enable Livepatch.
 
+### Error reporting and exports
+
+- Set `sentry_dsn` in `secrets.yml` to send controller errors to Sentry.
+- To enable exports to S3-compatible storage, set `cs_agent_s3_export_bucket` in `main.yml`, and `s3_export_access_key` and `s3_export_secret_key` in `secrets.yml`.
+
+### Automatic reboots
+
+When a server has pending updates that need a reboot, the provisioner reboots it during the run. Every re-run can therefore reboot your controller and nodes, which interrupts customer containers and seals the controller's Vault until the run unseals it again. To prevent this, set `common_allow_reboot: false` and schedule reboots yourself.
+
 ### A private controller image
 
 To install a controller image from a private registry, set `controller_image_repo` (and `controller_image_tag`, if needed) as host variables on the controller in `hosts.yml`, and add the registry's credentials to `secrets.yml`:
@@ -271,7 +280,7 @@ The registry must have a publicly trusted TLS certificate. If the credentials ex
 Confirm that Ansible can reach every server:
 
 ```bash
-ansible -i inventories/prod all -m ping
+ansible -i inventories/prod all -m ping --ask-vault-pass
 ```
 
 ## 5. Run the installer
@@ -287,7 +296,7 @@ ansible-playbook -i inventories/prod playbooks/site.yml --ask-vault-pass
 ```
 
 !!! warning
-    Don't use `--limit` on the first run. The provisioner needs to see every server at least once.
+    Don't use `--limit` on the first run. If you use Tailscale, the provisioner learns each server's tailnet address during a full run and caches it in the project directory, so a limited run is only safe after one full run from that same copy of the provisioner.
 
 The first run takes a while. It installs Docker and the other packages, pulls images, issues certificates, sets up the controller's database, configures your locations, availability zones, and nodes in the controller, enrolls each node, and then checks the result. Along the way:
 
