@@ -22,8 +22,16 @@ Preflight runs first and changes nothing. Its message tells you what to fix. The
 **`secret_key_base` or `user_auth_secret` is missing or too short.**
 : Generate each with `openssl rand -hex 64`.
 
+**The customer zone isn't delegated to your nameservers.**
+: With `dns_driver: powerdns`, the parent zone must delegate `cs_app_zone` to exactly the `powerdns_name` of every nameserver in your inventory. The message lists the NS records to create. See [Delegate the customer zone](dns.md#delegate-the-customer-zone).
+
 **Load balancer DNS records are missing or wrong.**
-: Each availability zone needs an A record for its `app_domain` and a wildcard **CNAME** pointing to it. See [Load balancer records](dns.md#load-balancer-records). If your control machine can't see those records, for example with split-horizon DNS, set `preflight_check_app_domain_dns: false` to skip this check.
+: If you manage the load balancer records yourself, each availability zone needs an A record for its `app_domain` and a wildcard **CNAME** pointing to it. See [Load balancer records](dns.md#load-balancer-records).
+
+If your control machine can't see public DNS, for example with split-horizon DNS, set `preflight_check_app_domain_dns: false` to skip both DNS checks.
+
+**Existing load balancer records conflict.**
+: With the bundled nameservers, the run stops before writing anything if an `app_domain` already holds records the installer didn't write. Choose a different `app_domain`, or delete the stale records with `pdnsutil delete-rrset` and run again. See [With the bundled nameservers](dns.md#with-the-bundled-nameservers).
 
 ## Load balancer domain not valid
 

@@ -300,7 +300,7 @@ ansible-playbook -i inventories/prod playbooks/site.yml --ask-vault-pass
 
 The first run takes a while. It installs Docker and the other packages, pulls images, issues certificates, sets up the controller's database, configures your locations, availability zones, and nodes in the controller, enrolls each node, and then checks the result. Along the way:
 
-1. **Preflight** checks your inventory and servers. It fails immediately on a missing setting, a duplicate availability zone, a short `secret_key_base`, a server that isn't Ubuntu 26.04, or missing load balancer DNS records. Nothing has changed on your servers at that point.
+1. **Preflight** checks your inventory and servers. It fails immediately on a missing setting, a duplicate availability zone, a short `secret_key_base`, a server that isn't Ubuntu 26.04, or DNS that isn't ready: with the bundled nameservers, a customer zone that isn't delegated to them; otherwise, missing load balancer records. Nothing has changed on your servers at that point.
 2. **Vault** initializes and unseals on its own. There's nothing to do by hand.
 3. **The controller is seeded** with your locations, availability zones, nodes, networks, load balancers, default products, and administrator account.
 4. **Each node enrolls** with the controller.

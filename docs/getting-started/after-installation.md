@@ -15,8 +15,9 @@ The last step of every run checks the things that would otherwise fail silently:
 | `ssh` | The controller can reach the nodes and registry over SSH. |
 | `portal` | Each node can reach the portal. |
 | `acme_backend` | Each node can reach the controller's certificate service. |
+| `lb_domain_public` | Public DNS resolves each new availability zone's load balancer records. Runs only when the installer wrote those records. |
 | `lb_domain` | The controller has validated each new availability zone's load balancer domain. |
-| `dns` | Every nameserver serves the customer zone. |
+| `dns` | Every nameserver serves the customer zone and, when the installer wrote them, each new availability zone's load balancer records. |
 | `pdns_api` | The PowerDNS API is answering. |
 | `dns_replication` | Each follower nameserver is replicating from the primary. |
 
